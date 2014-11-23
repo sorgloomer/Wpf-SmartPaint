@@ -17,11 +17,14 @@ namespace SmartPaint
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
-    /// </summary>
+    /// </summary> 
+
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+            new System.Globalization.CultureInfo("hu-HU");
             InitializeComponent();
         }
     }

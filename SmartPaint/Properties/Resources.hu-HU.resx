@@ -118,63 +118,63 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>About</value>
+    <value>Névjegy</value>
   </data>
   <data name="BrushTooltip1" xml:space="preserve">
-    <value>Brush</value>
+    <value>Ecset</value>
   </data>
   <data name="CreateTooltip1" xml:space="preserve">
-    <value>Create new project</value>
+    <value>Új projekt</value>
   </data>
   <data name="EraserTooltip1" xml:space="preserve">
-    <value>Eraser</value>
+    <value>Radír</value>
   </data>
   <data name="Erosion" xml:space="preserve">
-    <value>Erosion</value>
+    <value>Erózió</value>
   </data>
   <data name="Exit" xml:space="preserve">
-    <value>Exit</value>
+    <value>Kilépés</value>
   </data>
   <data name="Export" xml:space="preserve">
-    <value>Export</value>
+    <value>Exportálás</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Súgó</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Nyelv</value>
   </data>
   <data name="MainTitle" xml:space="preserve">
     <value>SmartPaint</value>
   </data>
   <data name="MoreHelp" xml:space="preserve">
-    <value>Press 'F1' for more help.</value>
+    <value>További segítségért nyomja meg az F1 gombot.</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>New</value>
+    <value>Új</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
+    <value>Megnyitás</value>
   </data>
   <data name="OpenTooltip1" xml:space="preserve">
-    <value>Open existing project</value>
+    <value>Megnyitás</value>
   </data>
   <data name="Project" xml:space="preserve">
-    <value>Project</value>
+    <value>Projekt</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Save</value>
+    <value>Mentés</value>
   </data>
   <data name="SaveTooltip1" xml:space="preserve">
-    <value>Save project</value>
+    <value>Mentés</value>
   </data>
   <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>Beállítások</value>
   </data>
   <data name="Transform" xml:space="preserve">
-    <value>Transform</value>
+    <value>Transzformáció</value>
   </data>
   <data name="Unify" xml:space="preserve">
-    <value>Unify</value>
+    <value>Egyesítés</value>
   </data>
 </root>
