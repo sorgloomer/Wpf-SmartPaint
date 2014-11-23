@@ -7,11 +7,11 @@
         Icon="./Images/favicon.ico" >
     <Grid> 
         <DockPanel>
-                <ToolBar DockPanel.Dock="Top">
+            <ToolBar DockPanel.Dock="Top" ToolBarTray.IsLocked="True">
                     <Menu DockPanel.Dock="Top">
                     <MenuItem Header="{x:Static p:Resources.Project}">
-                        <MenuItem Header="{x:Static p:Resources.New}"/>
-                        <MenuItem Header="{x:Static p:Resources.Open}"/>
+                        <MenuItem Header="{x:Static p:Resources.New}" Click="CreateProjectClick"/>
+                        <MenuItem Header="{x:Static p:Resources.Open}" Click="OpenProjectClick"/>
                         <MenuItem Header="{x:Static p:Resources.Save}"/>
                         <MenuItem Header="{x:Static p:Resources.Export}"/>
                         <MenuItem Header="{x:Static p:Resources.Exit}"/>
@@ -28,14 +28,14 @@
                         </MenuItem>
                     </Menu>
                 </ToolBar>
-            
-                <ToolBar DockPanel.Dock="Top">
-                <Button ToolTip="{x:Static p:Resources.CreateTooltip1}">
+
+            <ToolBar DockPanel.Dock="Top" ToolBarTray.IsLocked="True">
+                <Button ToolTip="{x:Static p:Resources.CreateTooltip1}" Click="CreateProjectClick">
                     <Button.Content>
                         <Image Source="Images/create.png" Width="16" Height="16" />
                     </Button.Content>
                 </Button>
-                <Button ToolTip="{x:Static p:Resources.OpenTooltip1}">
+                <Button ToolTip="{x:Static p:Resources.OpenTooltip1}" Click="OpenProjectClick">
                     <Button.Content>
                         <Image Source="Images/open.png" Width="16" Height="16" />
                     </Button.Content>

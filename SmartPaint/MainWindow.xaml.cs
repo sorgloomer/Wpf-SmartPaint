@@ -27,5 +27,27 @@ namespace SmartPaint
             new System.Globalization.CultureInfo("hu-HU");
             InitializeComponent();
         }
+
+        private void OpenProjectClick(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "MyProject";
+            dlg.DefaultExt = ".spt";
+            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            //TODO: if (result) {actually open project}
+        }
+
+        private void CreateProjectClick(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "MyProject";
+            dlg.DefaultExt = ".spt";
+            dlg.Filter = "Smart Paint project files (.spt)|*.spt"; 
+            Nullable<bool> result = dlg.ShowDialog();
+
+            //TODO: if (result) {actually create project}
+        }
     }
 }
