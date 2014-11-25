@@ -24,7 +24,7 @@
                         <MenuItem Header="{x:Static p:Resources.Language}"/>
                         </MenuItem>
                     <MenuItem Header="{x:Static p:Resources.Help}">
-                        <MenuItem Header="{x:Static p:Resources.About}"/>
+                        <MenuItem Header="{x:Static p:Resources.About}" Click="ShowAbout"/>
                         </MenuItem>
                     </Menu>
                 </ToolBar>
