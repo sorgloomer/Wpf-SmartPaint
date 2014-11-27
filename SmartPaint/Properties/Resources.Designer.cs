@@ -133,6 +133,15 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import picture.
+        /// </summary>
+        public static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string Language {
@@ -160,7 +169,7 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New.
+        ///   Looks up a localized string similar to New project.
         /// </summary>
         public static string New {
             get {
@@ -169,7 +178,7 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Open.
+        ///   Looks up a localized string similar to Open project.
         /// </summary>
         public static string Open {
             get {
@@ -201,15 +210,6 @@ namespace SmartPaint.Properties {
         public static string Save {
             get {
                 return ResourceManager.GetString("Save", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Save project.
-        /// </summary>
-        public static string SaveTooltip1 {
-            get {
-                return ResourceManager.GetString("SaveTooltip1", resourceCulture);
             }
         }
         

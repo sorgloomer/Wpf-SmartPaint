@@ -2,6 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:p="clr-namespace:SmartPaint.Properties"
+        xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         Title="{x:Static p:Resources.MainTitle}"
         Height="600" Width="800"
         Icon="./Images/favicon.ico" >
@@ -12,8 +13,9 @@
                     <MenuItem Header="{x:Static p:Resources.Project}">
                         <MenuItem Header="{x:Static p:Resources.New}" Click="CreateProjectClick"/>
                         <MenuItem Header="{x:Static p:Resources.Open}" Click="OpenProjectClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Save}"/>
-                        <MenuItem Header="{x:Static p:Resources.Export}"/>
+                        <MenuItem Header="{x:Static p:Resources.Save}" Click="SaveProjectClick"/>
+                        <MenuItem Header="{x:Static p:Resources.Import}" Click="ImportPictureClick"/>
+                        <MenuItem Header="{x:Static p:Resources.Export}" Click="ExportPictureClick"/>
                         <MenuItem Header="{x:Static p:Resources.Exit}"/>
                         </MenuItem>
                     <MenuItem Header="{x:Static p:Resources.Transform}">
@@ -40,27 +42,60 @@
                         <Image Source="Images/open.png" Width="16" Height="16" />
                     </Button.Content>
                 </Button>
-                <Button ToolTip="{x:Static p:Resources.SaveTooltip1}">
+                <Button ToolTip="{x:Static p:Resources.Save}">
                     <Button.Content>
                         <Image Source="Images/save.png" Width="16" Height="16" />
                     </Button.Content>
                 </Button>
                 <Separator></Separator>
-                    <Button ToolTip="{x:Static p:Resources.BrushTooltip1}">
-                    <Button.Content>
-                        <Image Source="Images/brush.png" Width="16" Height="16" />
-                    </Button.Content>
-                </Button>
                 <Button ToolTip="{x:Static p:Resources.EraserTooltip1}">
                     <Button.Content>
                         <Image Source="Images/erase.png" Width="16" Height="16" />
                     </Button.Content>
                 </Button>
+                <Button ToolTip="{x:Static p:Resources.BrushTooltip1}">
+                    <Button.Content>
+                        <Image Source="Images/brush.png" Width="16" Height="16" />
+                    </Button.Content>
+                </Button>
+               
+                <wpfTool:ColorPicker></wpfTool:ColorPicker>
             </ToolBar>
 
-            <TextBox>
-                Editor area...
-            </TextBox>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Background="Azure" Text="Editor area..." />
+                </Grid>
+
+                <ListView Width="100" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
+                <ListViewItem>
+                        <StackPanel Orientation="Horizontal">
+                        <Button>
+                            <Button.Content>
+                                <Image Source="Images/up.png" Width="16" Height="16" />
+                            </Button.Content>
+                        </Button>
+                        <Button>
+                            <Button.Content>
+                                <Image Source="Images/down.png" Width="16" Height="16" />
+                            </Button.Content>
+                        </Button>
+                    </StackPanel>
+                </ListViewItem>
+                <ListViewItem>b</ListViewItem>
+                <ListViewItem>b</ListViewItem>
+                
+            </ListView>
+            </Grid>
+           
         </DockPanel>
       </Grid>
 </Window>

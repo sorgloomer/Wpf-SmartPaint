@@ -32,9 +32,7 @@ namespace SmartPaint
         private void OpenProjectClick(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = "MyProject";
-            dlg.DefaultExt = ".spt";
-            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
+            setProjectDialog(dlg);
             Nullable<bool> result = dlg.ShowDialog();
 
             //TODO: if (result) {actually open project}
@@ -43,9 +41,7 @@ namespace SmartPaint
         private void CreateProjectClick(object sender, RoutedEventArgs e)
         {
             Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "MyProject";
-            dlg.DefaultExt = ".spt";
-            dlg.Filter = "Smart Paint project files (.spt)|*.spt"; 
+            setProjectDialog(dlg);
             Nullable<bool> result = dlg.ShowDialog();
 
             //TODO: if (result) {actually create project}
@@ -54,6 +50,40 @@ namespace SmartPaint
         private void ShowAbout(object sender, RoutedEventArgs e)
         {
             System.Windows.MessageBox.Show("Created by:\nHegedűs Tamás László\nDusza Andrea", SmartPaint.Properties.Resources.About, new MessageBoxButton(), MessageBoxImage.Information);
+        }
+
+        private void SaveProjectClick(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+        private void ImportPictureClick(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            setPictureDialog(dlg);
+            Nullable<bool> result = dlg.ShowDialog();
+
+            //TODO: if (result) {actually import}
+        }
+
+        private void ExportPictureClick(object sender, RoutedEventArgs e)
+        {
+            //TODO
+        }
+
+
+        private void setProjectDialog(Microsoft.Win32.FileDialog dlg)
+        {
+            dlg.FileName = "MyProject";
+            dlg.DefaultExt = ".spt";
+            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
+        }
+
+        private void setPictureDialog(Microsoft.Win32.FileDialog dlg)
+        {
+            dlg.FileName = "Picture";
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "PNG image files (.png)|*.png";
         }
     }
 }

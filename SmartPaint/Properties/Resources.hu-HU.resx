@@ -151,10 +151,10 @@
     <value>További segítségért nyomja meg az F1 gombot.</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>Új</value>
+    <value>Új projekt</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Megnyitás</value>
+    <value>Projekt megnyitása</value>
   </data>
   <data name="OpenTooltip1" xml:space="preserve">
     <value>Projekt megnyitása</value>
@@ -163,9 +163,6 @@
     <value>Projekt</value>
   </data>
   <data name="Save" xml:space="preserve">
-    <value>Mentés</value>
-  </data>
-  <data name="SaveTooltip1" xml:space="preserve">
     <value>Mentés</value>
   </data>
   <data name="Settings" xml:space="preserve">

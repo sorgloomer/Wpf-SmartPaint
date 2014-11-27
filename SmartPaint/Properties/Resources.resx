@@ -141,6 +141,9 @@
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import picture</value>
+  </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
@@ -151,10 +154,10 @@
     <value>Press 'F1' for more help.</value>
   </data>
   <data name="New" xml:space="preserve">
-    <value>New</value>
+    <value>New project</value>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open</value>
+    <value>Open project</value>
   </data>
   <data name="OpenTooltip1" xml:space="preserve">
     <value>Open existing project</value>
@@ -164,9 +167,6 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>
-  </data>
-  <data name="SaveTooltip1" xml:space="preserve">
-    <value>Save project</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
