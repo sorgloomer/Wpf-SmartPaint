@@ -32,24 +32,12 @@ namespace SmartPaint
 
         private void OpenProjectClick(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-            dlg.FileName = "MyProject";
-            dlg.DefaultExt = ".spt";
-            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
-            Nullable<bool> result = dlg.ShowDialog();
-
-            //TODO: if (result) {actually open project}
+            ApplicationContext.Instance.OpenProjectDialog();
         }
 
         private void CreateProjectClick(object sender, RoutedEventArgs e)
         {
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            dlg.FileName = "MyProject";
-            dlg.DefaultExt = ".spt";
-            dlg.Filter = "Smart Paint project files (.spt)|*.spt"; 
-            Nullable<bool> result = dlg.ShowDialog();
-
-            //TODO: if (result) {actually create project}
+            ApplicationContext.Instance.CreateProjectDialog();
         }
     }
 }

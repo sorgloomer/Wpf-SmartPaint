@@ -17,6 +17,7 @@ namespace SmartPaint.Common
             StaticLogger.Instance.OnWarn += this.ShowWarning;
             StaticLogger.Instance.OnInfo += this.ShowInfo;
             StaticLogger.Instance.OnError += this.ShowError;
+            StaticLogger.Instance.LogLevel = 1;
         }
 
         public void OnLoad()
@@ -41,6 +42,30 @@ namespace SmartPaint.Common
         {
             MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+
+        public void OpenProjectDialog()
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "MyProject";
+            dlg.DefaultExt = ".spt";
+            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            //TODO: if (result) {actually open project}
+        }
+
+        public void CreateProjectDialog()
+        {
+            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            dlg.FileName = "MyProject";
+            dlg.DefaultExt = ".spt";
+            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            //TODO: if (result) {actually create project}
+        }
+
 
         protected virtual void Dispose(bool disposing)
         {
