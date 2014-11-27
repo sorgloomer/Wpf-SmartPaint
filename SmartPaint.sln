@@ -3,6 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartPaint", "SmartPaint\SmartPaint.csproj", "{181D39E2-EFE1-4660-BD21-2AED76CFBFE4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoOperation", "NoOperation\NoOperation.csproj", "{F0552E3B-786B-43BF-A03F-842FAB5F0DD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Operations", "Operations", "{6306072A-0FB8-41C4-AADE-15FB6582909C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MergeOperation", "MergeOperation\MergeOperation.csproj", "{5C0E37BF-4E5C-403B-B229-18278E19735E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +19,20 @@ Global
 		{181D39E2-EFE1-4660-BD21-2AED76CFBFE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{181D39E2-EFE1-4660-BD21-2AED76CFBFE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{181D39E2-EFE1-4660-BD21-2AED76CFBFE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F0552E3B-786B-43BF-A03F-842FAB5F0DD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F0552E3B-786B-43BF-A03F-842FAB5F0DD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F0552E3B-786B-43BF-A03F-842FAB5F0DD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F0552E3B-786B-43BF-A03F-842FAB5F0DD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5C0E37BF-4E5C-403B-B229-18278E19735E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0E37BF-4E5C-403B-B229-18278E19735E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0E37BF-4E5C-403B-B229-18278E19735E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0E37BF-4E5C-403B-B229-18278E19735E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F0552E3B-786B-43BF-A03F-842FAB5F0DD2} = {6306072A-0FB8-41C4-AADE-15FB6582909C}
+		{5C0E37BF-4E5C-403B-B229-18278E19735E} = {6306072A-0FB8-41C4-AADE-15FB6582909C}
 	EndGlobalSection
 EndGlobal
