@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartPaint.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,10 @@ namespace SmartPaint
     {
         public MainWindow()
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture =
-            new System.Globalization.CultureInfo("hu-HU");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("hu-HU");
             InitializeComponent();
+
+            ApplicationContext.Instance.OnLoad();
         }
 
         private void OpenProjectClick(object sender, RoutedEventArgs e)
