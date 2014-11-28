@@ -11,11 +11,11 @@ namespace SmartPaint.Common
 {
     public class PluginContainer
     {
-        public List<ITransform> Transforms { get; protected set; }
+        public List<ITransformation> Transformations { get; protected set; }
 
         public PluginContainer()
         {
-            this.Transforms = new List<ITransform>();
+            this.Transformations = new List<ITransformation>();
         }
 
         public void LoadPluginsDirectory(string path = "plugins")
@@ -26,12 +26,12 @@ namespace SmartPaint.Common
                 {
                     var fullFilePath = Path.GetFullPath(file);
                     var a = Assembly.LoadFile(fullFilePath);
-                    foreach (var type in a.GetTypes().Where(t => typeof(ITransform).IsAssignableFrom(t)))
+                    foreach (var type in a.GetTypes().Where(t => typeof(ITransformation).IsAssignableFrom(t)))
                     {
                         try
                         {
-                            var instance = (ITransform)Activator.CreateInstance(type);
-                            this.Transforms.Add(instance);
+                            var instance = (ITransformation)Activator.CreateInstance(type);
+                            this.Transformations.Add(instance);
                         }
                         // Pokemon exception handling: Catch 'em all!
                         catch (Exception)

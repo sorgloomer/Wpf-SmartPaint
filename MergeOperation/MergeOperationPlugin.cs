@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MergeOperation
 {
-    public class MergeOperationPlugin : ITransform
+    public class MergeOperationPlugin : ITransformation
     {
         public string PrintableName
         {

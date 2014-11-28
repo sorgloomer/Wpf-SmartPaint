@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SmartPaint.Common
 {
-    public interface ITransform
+    public interface ITransformation
     {
         string PrintableName { get; }
         void Apply(object doc, IEnumerable<object> patches);

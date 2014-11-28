@@ -27,9 +27,9 @@ namespace SmartPaint.Common
 
         public void OnLoad()
         {
-            var ac = new PluginContainer();
-            ac.LoadPluginsDirectory();
-            foreach (var s in ac.Transforms.Select(t => t.PrintableName))
+            var plugins = this.Plugins;
+            plugins.LoadPluginsDirectory();
+            foreach (var s in plugins.Transformations.Select(t => t.PrintableName))
             {
                 StaticLogger.Info(s);
             }

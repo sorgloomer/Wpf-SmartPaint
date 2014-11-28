@@ -3,7 +3,12 @@ using SmartPaint.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Media.Imaging;
+using System.Collections.ObjectModel;
 using System.Drawing;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +27,7 @@ namespace SmartPaint
     /// Interaction logic for MainWindow.xaml
     /// </summary> 
 
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         
         public ObservableCollection<Patch> myPatchList = new ObservableCollection<Patch>() { 
@@ -36,6 +41,36 @@ namespace SmartPaint
             set { myPatchList = value; }
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this,
+                  new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        public static readonly DependencyProperty TransformationsProperty =
+            DependencyProperty.Register("Transformations", typeof(List<ITransformation>), typeof(MainWindow));
+        private List<ITransformation> transformations = new List<ITransformation>();
+        public List<ITransformation> Transformations 
+        { 
+            get
+            {
+                return this.transformations;
+            }
+            set
+            {
+                if (this.transformations != value)
+                {
+                    this.transformations = value;
+                    this.NotifyPropertyChanged("Transformations");
+                    this.miTransformations.ItemsSource = value;
+                }
+            }
+        }
+
 
         public MainWindow()
         {
@@ -45,6 +80,10 @@ namespace SmartPaint
             InitializeComponent();
             this.DataContext = this;
             ApplicationContext.Instance.OnLoad();
+
+            this.DataContext = this;
+
+            this.Transformations = ApplicationContext.Instance.Plugins.Transformations.ToList();
         }
 
         //TODO: no hardcoded strings! I am not sure it is a good idea to create UI from code.
@@ -78,5 +117,6 @@ namespace SmartPaint
         {
             ApplicationContext.Instance.ExportPictureDialog();
         }
+
     }
 }

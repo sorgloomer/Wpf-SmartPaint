@@ -95,7 +95,7 @@
   <ItemGroup>
     <Compile Include="Model\Patch.cs" />
     <Compile Include="Model\Project.cs" />
-    <Compile Include="Common\ITransform.cs" />
+    <Compile Include="Common\ITransformation.cs" />
     <Compile Include="Common\PluginContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
