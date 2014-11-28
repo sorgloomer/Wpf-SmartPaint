@@ -6,18 +6,14 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media.Imaging;
-using System.Collections.ObjectModel;
 using System.Drawing;
-using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -29,16 +25,17 @@ namespace SmartPaint
 
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        
-        public ObservableCollection<Patch> myPatchList = new ObservableCollection<Patch>() { 
-            //TODO: no hardcoding
-            new Patch("alma",new BitmapImage(new Uri("c:\\Data\\Projects\\GitRepos\\Wpf-SmartPaint\\Examples\\apple.png",UriKind.Absolute)),0,0
-) };
+        private ObservableCollection<Patch> patchList;
 
-        public ObservableCollection<Patch> MyPatchList
+        public ObservableCollection<Patch> PatchList
         {
-            get { return myPatchList; }
-            set { myPatchList = value; }
+            get { return patchList; }
+            set 
+            { 
+                patchList = value;
+
+                NotifyPropertyChanged("PatchList");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -78,12 +75,14 @@ namespace SmartPaint
             /*System.Threading.Thread.CurrentThread.CurrentUICulture =
             new System.Globalization.CultureInfo("hu-HU");*/
             InitializeComponent();
-            this.DataContext = this;
+
+            ApplicationContext.Instance.MainWindow = this;
             ApplicationContext.Instance.OnLoad();
+            
+            
+            this.Transformations = ApplicationContext.Instance.Plugins.Transformations.ToList();
 
             this.DataContext = this;
-
-            this.Transformations = ApplicationContext.Instance.Plugins.Transformations.ToList();
         }
 
         //TODO: no hardcoded strings! I am not sure it is a good idea to create UI from code.

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,10 +9,10 @@ namespace SmartPaint.Model
 {
     public class Project
     {
-        public List<Patch> patches { get; set; }
+        public ObservableCollection<Patch> Patches { get; set; }
         public Project() 
         {
-            patches = new List<Patch>();
+            Patches = new ObservableCollection<Patch>();
         }
     }
 }

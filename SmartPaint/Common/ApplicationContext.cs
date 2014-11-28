@@ -2,16 +2,20 @@
 using SmartPaint.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace SmartPaint.Common
 {
     public class ApplicationContext : IDisposable
     {
-        public Project currentProject { get; set; }
+
+        public MainWindow MainWindow { get; set; }
         public PluginContainer Plugins { get; protected set; }
         public ApplicationContext()
         {
@@ -21,8 +25,6 @@ namespace SmartPaint.Common
             StaticLogger.Instance.OnError += this.ShowError;
             StaticLogger.Instance.LogLevel = 1;
 
-            //TODO: ezt kitalálni, hogy legyen
-            currentProject = new Project();
         }
 
         public void OnLoad()
@@ -33,6 +35,9 @@ namespace SmartPaint.Common
             {
                 StaticLogger.Info(s);
             }
+
+            //TODO: ezt kitalálni, hogy legyen
+            MainWindow.PatchList = new ObservableCollection<Patch>() {};
         }
 
         public void ShowWarning(string msg)
@@ -67,7 +72,7 @@ namespace SmartPaint.Common
             //TODO: if (result) {actually create project}
 
             //TODO: ezt kitalálni, hogy legyen
-            currentProject = new Project();
+            MainWindow.PatchList = new ObservableCollection<Patch>() { };
         }
 
         public void ImportPictureDialog()
@@ -76,7 +81,28 @@ namespace SmartPaint.Common
             SetPictureDialog(dlg);
             Nullable<bool> result = dlg.ShowDialog();
 
-            //TODO: if (result) {actually import}
+            if (result!=null && result==true) 
+            {
+                int c = MainWindow.PatchList.Count+1;
+                BitmapImage bImg = new BitmapImage(new Uri(dlg.FileName, UriKind.Absolute));
+                MainWindow.PatchList.Add(new Patch("patch" + c, bImg, 0, 0));
+
+                //TODO: It dos not allow moving, I think
+                Image toCanvas = new Image();
+                toCanvas.Source = bImg;
+                toCanvas.Width = bImg.Width;
+                toCanvas.Height = bImg.Height;
+                Canvas.SetLeft(toCanvas,0);
+                Canvas.SetTop(toCanvas,0);
+                MainWindow.canvas.Children.Add(toCanvas);
+
+            }
+        }
+
+        public void ExportPictureDialog()
+        {
+            //TODO: export to .png
+            throw new NotImplementedException();
         }
 
 
@@ -98,6 +124,7 @@ namespace SmartPaint.Common
             GC.SuppressFinalize(this);
         }
 
+       
 
         public static ApplicationContext Instance = new ApplicationContext();
 
@@ -117,10 +144,6 @@ namespace SmartPaint.Common
 
 
 
-        internal void ExportPictureDialog()
-        {
-            //TODO: export to .png
-            throw new NotImplementedException();
-        }
+     
     }
 }

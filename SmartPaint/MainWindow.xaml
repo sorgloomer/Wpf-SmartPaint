@@ -5,8 +5,7 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         Title="{x:Static p:Resources.MainTitle}"
         Height="600" Width="800"
-        Icon="./Images/favicon.ico" 
-        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+        Icon="./Images/favicon.ico" >
 
     <Grid> 
         <DockPanel>
@@ -72,9 +71,10 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Background="Azure" Text="Editor area..." Grid.Column="0"/>
+                <!--TextBox Background="Azure" Text="Editor area..." Grid.Column="0"/-->
+                <Canvas  Name="canvas" Grid.Column="0" />
 
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
@@ -93,7 +93,7 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                    <ListView ItemsSource="{Binding MyPatchList}" Grid.Row="1">
+                    <ListView ItemsSource="{Binding PatchList}" Grid.Row="1">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>
