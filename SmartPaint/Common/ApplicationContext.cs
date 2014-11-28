@@ -1,4 +1,5 @@
-﻿using SmartPaint.Utils;
+﻿using SmartPaint.Model;
+using SmartPaint.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace SmartPaint.Common
 {
     public class ApplicationContext : IDisposable
     {
+        public Project currentProject { get; set; }
         public PluginContainer Plugins { get; protected set; }
         public ApplicationContext()
         {
@@ -18,6 +20,9 @@ namespace SmartPaint.Common
             StaticLogger.Instance.OnInfo += this.ShowInfo;
             StaticLogger.Instance.OnError += this.ShowError;
             StaticLogger.Instance.LogLevel = 1;
+
+            //TODO: ezt kitalálni, hogy legyen
+            currentProject = new Project();
         }
 
         public void OnLoad()
@@ -55,11 +60,14 @@ namespace SmartPaint.Common
 
         public void CreateProjectDialog()
         {
-            Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+            /*Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
             SetProjectDialog(dlg);
-            Nullable<bool> result = dlg.ShowDialog();
+            Nullable<bool> result = dlg.ShowDialog();*/
 
             //TODO: if (result) {actually create project}
+
+            //TODO: ezt kitalálni, hogy legyen
+            currentProject = new Project();
         }
 
         public void ImportPictureDialog()
@@ -111,7 +119,7 @@ namespace SmartPaint.Common
 
         internal void ExportPictureDialog()
         {
-            //TODO
+            //TODO: export to .png
             throw new NotImplementedException();
         }
     }

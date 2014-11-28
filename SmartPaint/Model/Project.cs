@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SmartPaint.Model
 {
-    class Project
+    public class Project
     {
-        public LinkedList<Patch> patches { get; set; }
+        public List<Patch> patches { get; set; }
         public Project() 
         {
-            patches = new LinkedList<Patch>();
+            patches = new List<Patch>();
         }
     }
 }

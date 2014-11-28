@@ -5,7 +5,9 @@
         xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
         Title="{x:Static p:Resources.MainTitle}"
         Height="600" Width="800"
-        Icon="./Images/favicon.ico" >
+        Icon="./Images/favicon.ico" 
+        DataContext="{Binding RelativeSource={RelativeSource Self}}">
+
     <Grid> 
         <DockPanel>
             <ToolBar DockPanel.Dock="Top" ToolBarTray.IsLocked="True">
@@ -65,19 +67,17 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
 
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
+                <TextBox Background="Azure" Text="Editor area..." Grid.Column="0"/>
 
-                    <TextBox Background="Azure" Text="Editor area..." />
-                </Grid>
-
-                <ListView Width="100" HorizontalAlignment="Right" HorizontalContentAlignment="Center">
-                <ListViewItem>
-                        <StackPanel Orientation="Horizontal">
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Grid.Row="0">
                         <Button>
                             <Button.Content>
                                 <Image Source="Images/up.png" Width="16" Height="16" />
@@ -89,11 +89,18 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                </ListViewItem>
-                <ListViewItem>b</ListViewItem>
-                <ListViewItem>b</ListViewItem>
-                
-            </ListView>
+                    <ListView ItemsSource="{Binding MyPatchList}" Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Name,FallbackValue='NoName'}" />                               
+                                    <Image Source="{Binding Image}" Width="100"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+               
             </Grid>
            
         </DockPanel>
