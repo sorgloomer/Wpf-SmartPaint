@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NoOperation
 {
-    public class NoOperationPlugin : ITransform
+    public class NoOperationPlugin : ITransformation
     {
         public string PrintableName
         {
