@@ -9,6 +9,7 @@ namespace SmartPaint.Model
 {
     public class Patch
     {
+        public bool Selected { get; set; }
         public int PositionX { get; set; }
         public int PositionY { get; set; }
         public string Name { get; set; }

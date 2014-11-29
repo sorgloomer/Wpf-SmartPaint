@@ -84,7 +84,7 @@
     <Compile Include="Persistence\SaveProject.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\StaticLogger.cs" />
-    <Compile Include="ViewModel\ProjectVM.cs" />
+    <Compile Include="ViewModel\DocumentScope.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
