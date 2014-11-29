@@ -23,7 +23,7 @@
                         <MenuItem Header="{x:Static p:Resources.Save}" Click="SaveProjectClick"/>
                         <MenuItem Header="{x:Static p:Resources.Import}" Click="ImportPictureClick"/>
                         <MenuItem Header="{x:Static p:Resources.Export}" Click="ExportPictureClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Exit}"/>
+                        <MenuItem Header="{x:Static p:Resources.Exit}" Click="ExitClick"/>
                     </MenuItem>
                     <MenuItem x:Name="miTransformations"
                             Header="{x:Static p:Resources.Transform}"
@@ -77,17 +77,21 @@
                 <wpfTool:ColorPicker></wpfTool:ColorPicker>
             </ToolBar>
 
-            <Grid>
+            <Grid Name="mainGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="140"/>
                 </Grid.ColumnDefinitions>
                 <!--TextBox Background="Azure" Text="Editor area..." Grid.Column="0"/-->
-                <ItemsControl ItemsSource="{Binding Project.Patches}">
+                <ItemsControl Name="itemsContol" ItemsSource="{Binding Project.Patches}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas  Name="canvas"
-                                     Grid.Column="0" />
+                                     Grid.Column="0" 
+                                     MouseLeftButtonDown="CanvasMouseLeftButtonDown"
+                                     MouseLeftButtonUp="CanvasMouseLeftButtonUp"
+                                     
+                                     MouseMove="CanvasMouseMove"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
 

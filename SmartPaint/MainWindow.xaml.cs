@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SmartPaint.Persistence;
 using SmartPaint.ViewModel;
+using System.Windows.Controls;
 
 namespace SmartPaint
 {
@@ -79,6 +80,48 @@ namespace SmartPaint
         private void ExportPictureClick(object sender, RoutedEventArgs e)
         {
             ApplicationContext.Instance.ExportPictureDialog();
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private Dictionary<Patch,System.Windows.Vector> mouseDistanceFromObject;
+
+        private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            mouseDistanceFromObject = new Dictionary<Patch, System.Windows.Vector>();
+            foreach (Patch p in ViewModel.Project.Patches)
+            {
+                mouseDistanceFromObject.Add(p,(e.GetPosition((Canvas)sender) -new System.Windows.Point(p.PositionX, p.PositionY)));
+            }
+
+        }
+
+        private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            mouseDistanceFromObject = null;
+        }
+
+        private void CanvasMouseMove(object sender, MouseEventArgs e)
+        {
+            if (mouseDistanceFromObject != null)
+            {
+                var position = e.GetPosition((Canvas)sender);
+
+
+                foreach (Patch p in ViewModel.Project.Patches)
+                {
+                    if (p.Selected)
+                    {
+                        var offset = (position - mouseDistanceFromObject[p]);
+                        p.PositionX = (int)offset.X;
+                        p.PositionY = (int)offset.Y;
+
+                    }
+                }
+            }
         }
 
     }

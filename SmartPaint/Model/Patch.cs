@@ -1,17 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace SmartPaint.Model
 {
-    public class Patch
+    public class Patch : INotifyPropertyChanged
     {
-        public bool Selected { get; set; }
-        public int PositionX { get; set; }
-        public int PositionY { get; set; }
+        /*public static readonly DependencyProperty PositionXProperty = DependencyProperty.Register("PositionX", typeof(int), typeof(Patch));
+        public static readonly DependencyProperty PositionYProperty = DependencyProperty.Register("PositionY", typeof(int), typeof(Patch));*/
+
+        private bool selected;
+
+        public bool Selected
+        {
+            get { return selected; }
+            set { selected = value; NotifyPropertyChanged("Selected");}
+        }
+
+        private int positionX;
+
+        public int PositionX
+        {
+            get { return positionX; }
+            set { positionX = value; NotifyPropertyChanged("PositionX"); }
+        }
+
+        private int positionY;
+
+        public int PositionY
+        {
+            get { return positionY; }
+            set { positionY = value; NotifyPropertyChanged("PositionY"); }
+        }
+        
         public string Name { get; set; }
         public BitmapSource Image { get; set; }
 
@@ -21,6 +47,12 @@ namespace SmartPaint.Model
             this.Image = image;
             this.PositionX = posX;
             this.PositionY = posY;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
