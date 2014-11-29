@@ -1,4 +1,5 @@
 ﻿using SmartPaint.Model;
+using SmartPaint.Persistence;
 using SmartPaint.Utils;
 using SmartPaint.ViewModel;
 using System;
@@ -54,11 +55,30 @@ namespace SmartPaint.Common
 
         public void OpenProjectDialog()
         {
-            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            try
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                SetProjectDialog(dlg);
+                Nullable<bool> result = dlg.ShowDialog();
+                if (result.HasValue && result.Value)
+                {
+                    this.ViewModel.Project = SptFile.From(dlg.FileName);
+                }
+            }
+            catch (Exception)
+            {
+                StaticLogger.Error("There was an error while opening the file!");
+            }
+        }
+        public void SaveProjectDialog()
+        {
+            var dlg = new Microsoft.Win32.SaveFileDialog();
             SetProjectDialog(dlg);
             Nullable<bool> result = dlg.ShowDialog();
-
-            //TODO: if (result) {actually open project}
+            if (result.HasValue && result.Value)
+            {
+                SptFile.Save(dlg.FileName, this.ViewModel.Project);
+            }
         }
 
         public void CreateProjectDialog()

@@ -67,8 +67,7 @@ namespace SmartPaint
 
         private void SaveProjectClick(object sender, RoutedEventArgs e)
         {
-            SaveProject.Save("project.spt", this.ViewModel.Project);
-            //TODO: save to .spt
+            ApplicationContext.Instance.SaveProjectDialog();
         }
 
         private void ImportPictureClick(object sender, RoutedEventArgs e)
@@ -80,18 +79,6 @@ namespace SmartPaint
         private void ExportPictureClick(object sender, RoutedEventArgs e)
         {
             ApplicationContext.Instance.ExportPictureDialog();
-        }
-
-        private void ListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
-            foreach (Patch p in e.AddedItems)
-            {
-                p.Selected= true;
-            }
-            foreach (Patch p in e.RemovedItems)
-            {
-                p.Selected = false;
-            }
         }
 
     }
