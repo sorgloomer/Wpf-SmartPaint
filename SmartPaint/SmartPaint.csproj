@@ -81,6 +81,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Common\ApplicationContext.cs" />
+    <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Persistence\SptFile.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\StaticLogger.cs" />
