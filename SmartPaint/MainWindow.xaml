@@ -10,6 +10,7 @@
 
     <Window.Resources>
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <conv:TransformationToCommandConverter  x:Key="TransformationToCommandConverter" />
     </Window.Resources>
     
     <Grid>
@@ -27,11 +28,14 @@
                     <MenuItem x:Name="miTransformations"
                             Header="{x:Static p:Resources.Transform}"
                             ItemsSource="{Binding Transformations}">
-                        <MenuItem.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding PrintableName}" />
-                            </DataTemplate>
-                        </MenuItem.ItemTemplate>
+                        <MenuItem.ItemContainerStyle>
+                            <Style TargetType="MenuItem">
+                                <Setter Property="Command"
+                                        Value="{Binding Converter={StaticResource TransformationToCommandConverter}}" />
+                                <Setter Property="Header"
+                                        Value="{Binding PrintableName}" />
+                            </Style>
+                        </MenuItem.ItemContainerStyle>
                     </MenuItem>
                     <MenuItem Header="{x:Static p:Resources.Settings}">
                         <MenuItem Header="{x:Static p:Resources.Language}"/>
@@ -97,7 +101,9 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding Image}"
-                                   Visibility="{Binding Selected, Converter={StaticResource BoolToVisibilityConverter}}" />
+                                   Visibility="{Binding Selected, Converter={StaticResource BoolToVisibilityConverter}}"
+                                   Width="{Binding Image.PixelWidth}"
+                                   Height="{Binding Image.PixelHeight}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

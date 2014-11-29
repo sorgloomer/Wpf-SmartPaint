@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartPaint.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace SmartPaint.Common
     public interface ITransformation
     {
         string PrintableName { get; }
-        void Apply(object doc, IEnumerable<object> patches);
+        void Apply(Project project);
+        bool CanApply(Project project);
     }
 }

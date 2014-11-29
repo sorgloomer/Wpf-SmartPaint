@@ -13,9 +13,9 @@ namespace SmartPaint.Model
         public int PositionX { get; set; }
         public int PositionY { get; set; }
         public string Name { get; set; }
-        public BitmapImage Image { get; set; }
+        public BitmapSource Image { get; set; }
 
-        public Patch(string name, BitmapImage image, int posX, int posY) 
+        public Patch(string name, BitmapSource image, int posX, int posY) 
         {
             this.Name = name;
             this.Image = image;
