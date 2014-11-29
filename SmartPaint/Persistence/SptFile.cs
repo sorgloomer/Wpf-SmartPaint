@@ -102,7 +102,10 @@ namespace SmartPaint.Persistence
                 image = new BitmapImage();
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
-                image.StreamSource = this.zipFile["images/" + id.ToString() + ".png"].InputStream;
+                var ms = new MemoryStream();
+                this.zipFile["images/" + id.ToString() + ".png"].Extract(ms);
+                ms.Position = 0;
+                image.StreamSource = ms;
                 image.EndInit();
                 this.pictureById.Add(id, image);
             }
@@ -116,14 +119,19 @@ namespace SmartPaint.Persistence
                 (int)element.Element("Position").Element("X"),
                 (int)element.Element("Position").Element("Y"));
         }
+        protected List<Patch> ParseMetaFile()
+        {
+            var xmlStream = new MemoryStream();
+            this.zipFile["Meta.xml"].Extract(xmlStream);
+            xmlStream.Position = 0;
+            var xml = XDocument.Load(xmlStream);
+            return xml.Element("Project").Element("Patches").Elements("Patch").Select(this.MapElement).ToList();
+        }
         public Project LoadFrom(ZipFile file)
         {
             this.zipFile = file;
-            var metaEntry = file["Meta.xml"];
-            var xml = XDocument.Load(metaEntry.InputStream);
             this.pictureById = new Dictionary<int, BitmapImage>();
-            var patches = xml.Element("Project").Element("Patches").Elements("Patch").Select(this.MapElement);
-
+            var patches = this.ParseMetaFile();
             this.pictureById = null;
             this.idByPicture = null;
             this.zipFile = null;
