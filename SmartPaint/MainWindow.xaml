@@ -114,7 +114,8 @@
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <Canvas  Name="selectedcanvas"
-                                     Grid.Column="0">
+                                     Grid.Column="0"
+                                     IsHitTestVisible="False">
                                 <Canvas.Effect>
                                     <DropShadowEffect Color="#EE9922"
                                                       BlurRadius="10"
