@@ -20,33 +20,39 @@ namespace SmartPaint.Common
 
         public void LoadPluginsDirectory(string path = "plugins")
         {
-            foreach (var file in Directory.EnumerateFiles(path, "*.dll"))
+            try
             {
-                try
+                foreach (var file in Directory.EnumerateFiles(path, "*.dll"))
                 {
-                    var fullFilePath = Path.GetFullPath(file);
-                    var a = Assembly.LoadFile(fullFilePath);
-                    foreach (var type in a.GetTypes().Where(t => typeof(ITransformation).IsAssignableFrom(t)))
+                    try
                     {
-                        try
+                        var fullFilePath = Path.GetFullPath(file);
+                        var a = Assembly.LoadFile(fullFilePath);
+                        foreach (var type in a.GetTypes().Where(t => typeof(ITransformation).IsAssignableFrom(t)))
                         {
-                            var instance = (ITransformation)Activator.CreateInstance(type);
-                            this.Transformations.Add(instance);
-                        }
-                        // Pokemon exception handling: Catch 'em all!
-                        catch (Exception)
-                        {
-                            StaticLogger.Warn(string.Format("Couldn't instantiate plugin {0} in plugin file {1}.", type.FullName, file));
+                            try
+                            {
+                                var instance = (ITransformation)Activator.CreateInstance(type);
+                                this.Transformations.Add(instance);
+                            }
+                            // Pokemon exception handling: Catch 'em all!
+                            catch (Exception)
+                            {
+                                StaticLogger.Warn(string.Format("Couldn't instantiate plugin {0} in plugin file {1}.", type.FullName, file));
+                            }
                         }
                     }
-                }
-                // Pokemon exception handling: Catch 'em all!
-                catch (Exception)
-                {
-                    StaticLogger.Warn(string.Format("Plugin file {0} could not be loaded.", file));
+                    // Pokemon exception handling: Catch 'em all!
+                    catch (Exception)
+                    {
+                        StaticLogger.Warn(string.Format("Plugin file {0} could not be loaded.", file));
+                    }
                 }
             }
+            catch (Exception)
+            {
+                StaticLogger.Warn("Couldn't load some plugins.");
+            }
         }
-
     }
 }

@@ -1,5 +1,6 @@
 ﻿using SmartPaint.Model;
 using SmartPaint.Utils;
+using SmartPaint.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,11 +16,13 @@ namespace SmartPaint.Common
     public class ApplicationContext : IDisposable
     {
 
+        public ProjectVM ViewModel { get; set; }
         public MainWindow MainWindow { get; set; }
         public PluginContainer Plugins { get; protected set; }
         public ApplicationContext()
         {
             this.Plugins = new PluginContainer();
+            this.ViewModel = new ProjectVM();
             StaticLogger.Instance.OnWarn += this.ShowWarning;
             StaticLogger.Instance.OnInfo += this.ShowInfo;
             StaticLogger.Instance.OnError += this.ShowError;
@@ -27,17 +30,12 @@ namespace SmartPaint.Common
 
         }
 
-        public void OnLoad()
+        public void OnLoad(MainWindow mw)
         {
-            var plugins = this.Plugins;
-            plugins.LoadPluginsDirectory();
-            foreach (var s in plugins.Transformations.Select(t => t.PrintableName))
-            {
-                StaticLogger.Info(s);
-            }
-
-            //TODO: ezt kitalálni, hogy legyen
-            MainWindow.PatchList = new ObservableCollection<Patch>() {};
+            this.Plugins.LoadPluginsDirectory();
+            this.MainWindow = mw;
+            this.ViewModel.Transformations = new ObservableCollection<ITransformation>(this.Plugins.Transformations);
+            this.MainWindow.ViewModel = this.ViewModel;
         }
 
         public void ShowWarning(string msg)
@@ -72,7 +70,7 @@ namespace SmartPaint.Common
             //TODO: if (result) {actually create project}
 
             //TODO: ezt kitalálni, hogy legyen
-            MainWindow.PatchList = new ObservableCollection<Patch>() { };
+            this.ViewModel.Project.Patches = new ObservableCollection<Patch>() { };
         }
 
         public void ImportPictureDialog()
@@ -83,9 +81,9 @@ namespace SmartPaint.Common
 
             if (result!=null && result==true) 
             {
-                int c = MainWindow.PatchList.Count+1;
+                int c = this.ViewModel.Project.Patches.Count+1;
                 BitmapImage bImg = new BitmapImage(new Uri(dlg.FileName, UriKind.Absolute));
-                MainWindow.PatchList.Add(new Patch("patch" + c, bImg, 0, 0));
+                this.ViewModel.Project.Patches.Add(new Patch("patch" + c, bImg, 0, 0));
 
                 //TODO: It dos not allow moving, I think
                 Image toCanvas = new Image();
@@ -142,8 +140,5 @@ namespace SmartPaint.Common
             dlg.Filter = "PNG image files (.png)|*.png";
         }
 
-
-
-     
     }
 }

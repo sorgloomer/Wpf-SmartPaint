@@ -16,6 +16,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SmartPaint.Persistence;
+using SmartPaint.ViewModel;
 
 namespace SmartPaint
 {
@@ -23,51 +25,8 @@ namespace SmartPaint
     /// Interaction logic for MainWindow.xaml
     /// </summary> 
 
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private ObservableCollection<Patch> patchList;
-
-        public ObservableCollection<Patch> PatchList
-        {
-            get { return patchList; }
-            set 
-            { 
-                patchList = value;
-
-                NotifyPropertyChanged("PatchList");
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this,
-                  new PropertyChangedEventArgs(propertyName));
-            }
-        }
-
-        public static readonly DependencyProperty TransformationsProperty =
-            DependencyProperty.Register("Transformations", typeof(List<ITransformation>), typeof(MainWindow));
-        private List<ITransformation> transformations = new List<ITransformation>();
-        public List<ITransformation> Transformations 
-        { 
-            get
-            {
-                return this.transformations;
-            }
-            set
-            {
-                if (this.transformations != value)
-                {
-                    this.transformations = value;
-                    this.NotifyPropertyChanged("Transformations");
-                    this.miTransformations.ItemsSource = value;
-                }
-            }
-        }
-
 
         public MainWindow()
         {
@@ -76,13 +35,18 @@ namespace SmartPaint
             new System.Globalization.CultureInfo("hu-HU");*/
             InitializeComponent();
 
-            ApplicationContext.Instance.MainWindow = this;
-            ApplicationContext.Instance.OnLoad();
-            
-            
-            this.Transformations = ApplicationContext.Instance.Plugins.Transformations.ToList();
+            ApplicationContext.Instance.OnLoad(this);
+        }
 
-            this.DataContext = this;
+        private ProjectVM viewModel;
+        public ProjectVM ViewModel
+        {
+            get { return viewModel; }
+            set
+            {
+                this.viewModel = value;
+                this.DataContext = value;
+            }
         }
 
         //TODO: no hardcoded strings! I am not sure it is a good idea to create UI from code.
@@ -103,6 +67,7 @@ namespace SmartPaint
 
         private void SaveProjectClick(object sender, RoutedEventArgs e)
         {
+            SaveProject.Save("project.spt", this.ViewModel.Project);
             //TODO: save to .spt
         }
 
