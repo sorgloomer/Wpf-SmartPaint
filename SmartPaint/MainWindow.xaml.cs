@@ -67,7 +67,7 @@ namespace SmartPaint
 
         private void SaveProjectClick(object sender, RoutedEventArgs e)
         {
-            SaveProject.Save("project.spt", this.ViewModel.Project);
+            SptFile.Save("project.spt", this.ViewModel.Project);
             //TODO: save to .spt
         }
 
