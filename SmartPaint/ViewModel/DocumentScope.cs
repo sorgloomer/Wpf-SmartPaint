@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace SmartPaint.ViewModel
 {
-    public class ProjectVM : INotifyPropertyChanged
+    public class DocumentScope : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)
@@ -43,7 +43,7 @@ namespace SmartPaint.ViewModel
             }
         }
 
-        public ProjectVM()
+        public DocumentScope()
         {
             this.Transformations = new ObservableCollection<ITransformation>();
             this.Project = new Project();

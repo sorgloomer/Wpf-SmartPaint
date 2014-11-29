@@ -38,8 +38,8 @@ namespace SmartPaint
             ApplicationContext.Instance.OnLoad(this);
         }
 
-        private ProjectVM viewModel;
-        public ProjectVM ViewModel
+        private DocumentScope viewModel;
+        public DocumentScope ViewModel
         {
             get { return viewModel; }
             set

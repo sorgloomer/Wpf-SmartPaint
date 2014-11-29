@@ -16,13 +16,13 @@ namespace SmartPaint.Common
     public class ApplicationContext : IDisposable
     {
 
-        public ProjectVM ViewModel { get; set; }
+        public DocumentScope ViewModel { get; set; }
         public MainWindow MainWindow { get; set; }
         public PluginContainer Plugins { get; protected set; }
         public ApplicationContext()
         {
             this.Plugins = new PluginContainer();
-            this.ViewModel = new ProjectVM();
+            this.ViewModel = new DocumentScope();
             StaticLogger.Instance.OnWarn += this.ShowWarning;
             StaticLogger.Instance.OnInfo += this.ShowInfo;
             StaticLogger.Instance.OnError += this.ShowError;
@@ -83,24 +83,14 @@ namespace SmartPaint.Common
             {
                 int c = this.ViewModel.Project.Patches.Count+1;
                 BitmapImage bImg = new BitmapImage(new Uri(dlg.FileName, UriKind.Absolute));
-                this.ViewModel.Project.Patches.Add(new Patch("patch" + c, bImg, 0, 0));
-
-                //TODO: It dos not allow moving, I think
-                Image toCanvas = new Image();
-                toCanvas.Source = bImg;
-                toCanvas.Width = bImg.Width;
-                toCanvas.Height = bImg.Height;
-                Canvas.SetLeft(toCanvas,0);
-                Canvas.SetTop(toCanvas,0);
-                MainWindow.canvas.Children.Add(toCanvas);
-
+                this.ViewModel.Project.Patches.Add(new Patch("patch" + c, bImg, 200, 200));
             }
         }
 
         public void ExportPictureDialog()
         {
             //TODO: export to .png
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
 
