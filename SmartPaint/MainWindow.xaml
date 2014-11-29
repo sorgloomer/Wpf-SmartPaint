@@ -101,9 +101,45 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Image Source="{Binding Image}"
-                                   Visibility="{Binding Selected, Converter={StaticResource BoolToVisibilityConverter}}"
                                    Width="{Binding Image.PixelWidth}"
                                    Height="{Binding Image.PixelHeight}" />
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding Project.Patches}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <Canvas  Name="selectedcanvas"
+                                     Grid.Column="0">
+                                <Canvas.Effect>
+                                    <DropShadowEffect Color="#EE9922"
+                                                      BlurRadius="10"
+                                                      ShadowDepth="0"
+                                                      Opacity="1"/>
+                                </Canvas.Effect>
+                            </Canvas>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter Property="Canvas.Left"
+                                    Value="{Binding PositionX}" />
+                            <Setter Property="Canvas.Top"
+                                    Value="{Binding PositionY}" />
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Rectangle Width="{Binding Image.PixelWidth}"
+                                       Height="{Binding Image.PixelHeight}"
+                                       Fill="#30FF0000"
+                                       Visibility="{Binding Selected, Converter={StaticResource BoolToVisibilityConverter}}">
+                                <Rectangle.OpacityMask>
+                                    <ImageBrush ImageSource="{Binding Image}" />
+                                </Rectangle.OpacityMask>
+                            </Rectangle>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
