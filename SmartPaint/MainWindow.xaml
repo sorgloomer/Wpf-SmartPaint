@@ -114,7 +114,7 @@
                             </Button.Content>
                         </Button>
                     </StackPanel>
-                    <ListView ItemsSource="{Binding Project.Patches}" Grid.Row="1">
+                    <ListView ItemsSource="{Binding Project.Patches}" Grid.Row="1" SelectionChanged="ListView_SelectionChanged">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel>

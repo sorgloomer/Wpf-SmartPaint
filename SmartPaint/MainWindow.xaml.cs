@@ -82,5 +82,17 @@ namespace SmartPaint
             ApplicationContext.Instance.ExportPictureDialog();
         }
 
+        private void ListView_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            foreach (Patch p in e.AddedItems)
+            {
+                p.Selected= true;
+            }
+            foreach (Patch p in e.RemovedItems)
+            {
+                p.Selected = false;
+            }
+        }
+
     }
 }
