@@ -32,8 +32,8 @@ namespace SmartPaint
         public MainWindow()
         {
             
-            /*System.Threading.Thread.CurrentThread.CurrentUICulture =
-            new System.Globalization.CultureInfo("hu-HU");*/
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+            new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
 
             ApplicationContext.Instance.OnLoad(this);
@@ -63,7 +63,7 @@ namespace SmartPaint
 
         private void ShowAbout(object sender, RoutedEventArgs e)
         {
-            System.Windows.MessageBox.Show("Created by:\nHegedűs Tamás László\nDusza Andrea", SmartPaint.Properties.Resources.About, new MessageBoxButton(), MessageBoxImage.Information);
+            System.Windows.MessageBox.Show(SmartPaint.Properties.Resources.CreatedBy + "\nHegedűs Tamás László\nDusza Andrea", SmartPaint.Properties.Resources.About, new MessageBoxButton(), MessageBoxImage.Information);
         }
 
         private void SaveProjectClick(object sender, RoutedEventArgs e)
@@ -134,6 +134,20 @@ namespace SmartPaint
         private void MovePatchDown(object sender, RoutedEventArgs e)
         {
             viewModel.MovePatchDown();
+        }
+
+        private void setEnglish_Click_1(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Lang = "en-US";
+            Properties.Settings.Default.Save();
+            System.Windows.MessageBox.Show(SmartPaint.Properties.Resources.PleaseRestart, SmartPaint.Properties.Resources.Warning, new MessageBoxButton(), MessageBoxImage.Exclamation);
+        }
+
+        private void setHungarian_Click_1(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.Lang = "hu-HU";
+            Properties.Settings.Default.Save();
+            System.Windows.MessageBox.Show(SmartPaint.Properties.Resources.PleaseRestart, SmartPaint.Properties.Resources.Warning, new MessageBoxButton(), MessageBoxImage.Exclamation);
         }
 
     }

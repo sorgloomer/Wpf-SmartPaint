@@ -123,8 +123,14 @@
   <data name="BrushTooltip1" xml:space="preserve">
     <value>Ecset</value>
   </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Készítette:</value>
+  </data>
   <data name="CreateTooltip1" xml:space="preserve">
     <value>Új projekt</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>Angol</value>
   </data>
   <data name="EraserTooltip1" xml:space="preserve">
     <value>Radír</value>
@@ -140,6 +146,12 @@
   </data>
   <data name="Help" xml:space="preserve">
     <value>Súgó</value>
+  </data>
+  <data name="Hungarian" xml:space="preserve">
+    <value>Magyar</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>Kép importálása</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Nyelv</value>
@@ -159,6 +171,9 @@
   <data name="OpenTooltip1" xml:space="preserve">
     <value>Projekt megnyitása</value>
   </data>
+  <data name="PleaseRestart" xml:space="preserve">
+    <value>A változás csak újraindítás után lép érvénybe!</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Projekt</value>
   </data>
@@ -173,5 +188,8 @@
   </data>
   <data name="Unify" xml:space="preserve">
     <value>Egyesítés</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Figyelmeztetés</value>
   </data>
 </root>

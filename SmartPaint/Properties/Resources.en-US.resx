@@ -123,8 +123,14 @@
   <data name="BrushTooltip1" xml:space="preserve">
     <value>Brush</value>
   </data>
+  <data name="CreatedBy" xml:space="preserve">
+    <value>Created by:</value>
+  </data>
   <data name="CreateTooltip1" xml:space="preserve">
     <value>Create new project</value>
+  </data>
+  <data name="English" xml:space="preserve">
+    <value>English</value>
   </data>
   <data name="EraserTooltip1" xml:space="preserve">
     <value>Eraser</value>
@@ -140,6 +146,9 @@
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
+  </data>
+  <data name="Hungarian" xml:space="preserve">
+    <value>Hungarian</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -159,6 +168,9 @@
   <data name="OpenTooltip1" xml:space="preserve">
     <value>Open existing project</value>
   </data>
+  <data name="PleaseRestart" xml:space="preserve">
+    <value>This action only takes effect after restarting application!</value>
+  </data>
   <data name="Project" xml:space="preserve">
     <value>Project</value>
   </data>
@@ -173,5 +185,8 @@
   </data>
   <data name="Unify" xml:space="preserve">
     <value>Unify</value>
+  </data>
+  <data name="Warning" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>
