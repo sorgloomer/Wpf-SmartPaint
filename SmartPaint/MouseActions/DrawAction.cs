@@ -28,9 +28,9 @@ namespace SmartPaint.MouseActions
         public DrawAction(Project project)
         {
             this.Project = project;
-            this.Color = Colors.Red;
+            this.Color = Colors.Black;
             this.Radius = 5;
-            this.brush = new SolidColorBrush(Colors.Red);
+            this.brush = new SolidColorBrush(Colors.Black);
             this.pen = new Pen(this.brush, this.Radius);
         }
 

@@ -12,147 +12,167 @@
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
         <conv:TransformationToCommandConverter  x:Key="TransformationToCommandConverter" />
     </Window.Resources>
-    
+
     <Grid>
-        <DockPanel>
-            <ToolBar DockPanel.Dock="Top" ToolBarTray.IsLocked="True">
-                <Menu DockPanel.Dock="Top">
-                    <MenuItem Header="{x:Static p:Resources.Project}">
-                        <MenuItem Header="{x:Static p:Resources.New}" Click="CreateProjectClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Open}" Click="OpenProjectClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Save}" Click="SaveProjectClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Import}" Click="ImportPictureClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Export}" Click="ExportPictureClick"/>
-                        <MenuItem Header="{x:Static p:Resources.Exit}" Click="ExitClick"/>
-                    </MenuItem>
-                    <MenuItem x:Name="miTransformations"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ToolBar ToolBarTray.IsLocked="True" Grid.Row="0">
+            <Menu>
+                <MenuItem Header="{x:Static p:Resources.Project}">
+                    <MenuItem Header="{x:Static p:Resources.New}" Click="CreateProjectClick"/>
+                    <MenuItem Header="{x:Static p:Resources.Open}" Click="OpenProjectClick"/>
+                    <MenuItem Header="{x:Static p:Resources.Save}" Click="SaveProjectClick"/>
+                    <MenuItem Header="{x:Static p:Resources.Import}" Click="ImportPictureClick"/>
+                    <MenuItem Header="{x:Static p:Resources.Export}" Click="ExportPictureClick"/>
+                    <MenuItem Header="{x:Static p:Resources.Exit}" Click="ExitClick"/>
+                </MenuItem>
+                <MenuItem x:Name="miTransformations"
                             Header="{x:Static p:Resources.Transform}"
                             ItemsSource="{Binding Transformations}">
-                        <MenuItem.ItemContainerStyle>
-                            <Style TargetType="MenuItem">
-                                <Setter Property="Command"
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="Command"
                                         Value="{Binding Converter={StaticResource TransformationToCommandConverter}}" />
-                                <Setter Property="Header"
+                            <Setter Property="Header"
                                         Value="{Binding PrintableName}" />
-                            </Style>
-                        </MenuItem.ItemContainerStyle>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                </MenuItem>
+                <MenuItem Header="{x:Static p:Resources.Settings}">
+                    <MenuItem Header="{x:Static p:Resources.Language}">
+                        <MenuItem Header="{x:Static p:Resources.English}" Name ="setEnglish" Click="setEnglish_Click_1"/>
+                        <MenuItem Header="{x:Static p:Resources.Hungarian}"  Name ="setHungarian" Click="setHungarian_Click_1"/>
                     </MenuItem>
-                    <MenuItem Header="{x:Static p:Resources.Settings}">
-                        <MenuItem Header="{x:Static p:Resources.Language}">
-                            <MenuItem Header="{x:Static p:Resources.English}" Name ="setEnglish" Click="setEnglish_Click_1"/>
-                            <MenuItem Header="{x:Static p:Resources.Hungarian}"  Name ="setHungarian" Click="setHungarian_Click_1"/>
-                        </MenuItem>
-                    </MenuItem>
-                    <MenuItem Header="{x:Static p:Resources.Help}">
-                        <MenuItem Header="{x:Static p:Resources.About}" Click="ShowAbout"/>
-                    </MenuItem>
-                </Menu>
-            </ToolBar>
+                </MenuItem>
+                <MenuItem Header="{x:Static p:Resources.Help}">
+                    <MenuItem Header="{x:Static p:Resources.About}" Click="ShowAbout"/>
+                </MenuItem>
+            </Menu>
+        </ToolBar>
 
-            <ToolBar DockPanel.Dock="Top" ToolBarTray.IsLocked="True">
-                <Button ToolTip="{x:Static p:Resources.CreateTooltip1}" Click="CreateProjectClick">
-                    <Button.Content>
-                        <Image Source="Images/create.png" Width="16" Height="16" />
-                    </Button.Content>
-                </Button>
-                <Button ToolTip="{x:Static p:Resources.OpenTooltip1}" Click="OpenProjectClick">
-                    <Button.Content>
-                        <Image Source="Images/open.png" Width="16" Height="16" />
-                    </Button.Content>
-                </Button>
-                <Button ToolTip="{x:Static p:Resources.Save}">
-                    <Button.Content>
-                        <Image Source="Images/save.png" Width="16" Height="16" />
-                    </Button.Content>
-                </Button>
-                <Separator></Separator>
-                <Button ToolTip="{x:Static p:Resources.EraserTooltip1}">
-                    <Button.Content>
-                        <Image Source="Images/erase.png" Width="16" Height="16" />
-                    </Button.Content>
-                </Button>
-                <Button ToolTip="{x:Static p:Resources.BrushTooltip1}">
-                    <Button.Content>
-                        <Image Source="Images/brush.png" Width="16" Height="16" />
-                    </Button.Content>
-                </Button>
+        <ToolBar ToolBarTray.IsLocked="True" Grid.Row="1">
+            <Button ToolTip="{x:Static p:Resources.CreateTooltip1}" Click="CreateProjectClick">
+                <Button.Content>
+                    <Image Source="Images/create.png" Width="16" Height="16" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="{x:Static p:Resources.OpenTooltip1}" Click="OpenProjectClick">
+                <Button.Content>
+                    <Image Source="Images/open.png" Width="16" Height="16" />
+                </Button.Content>
+            </Button>
+            <Button ToolTip="{x:Static p:Resources.Save}">
+                <Button.Content>
+                    <Image Source="Images/save.png" Width="16" Height="16" />
+                </Button.Content>
+            </Button>
+            <Separator></Separator>
 
-                <wpfTool:ColorPicker></wpfTool:ColorPicker>
-            </ToolBar>
+            <RadioButton Name="MoveMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.BrushTooltip1}" 
+                         IsChecked="True" Checked="MoveMode_Checked_1">
+                <RadioButton.Content>
+                    <Image Source="Images/move.png" Width="16" Height="16" />
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton Name="EraseMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.EraserTooltip1}"
+                         Checked="EraseMode_Checked">
+                <RadioButton.Content>
+                    <Image Source="Images/erase.png" Width="16" Height="16" />
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton Name="BrushMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.BrushTooltip1}"
+                         Checked="BrushMode_Checked_1">
+                <RadioButton.Content>
+                    <Image Source="Images/brush.png" Width="16" Height="16" />
+                </RadioButton.Content>
+            </RadioButton>
 
-            <Grid Name="mainGrid">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="140"/>
-                </Grid.ColumnDefinitions>
-                <!--TextBox Background="Azure" Text="Editor area..." Grid.Column="0"/-->
-                <ItemsControl Name="itemsContol" ItemsSource="{Binding Project.Patches}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas  Name="canvas"
-                                     Grid.Column="0" 
+            <wpfTool:ColorPicker Name="colorPicker" SelectedColorChanged="colorPicker_SelectedColorChanged_1"></wpfTool:ColorPicker>
+        </ToolBar>
+
+        <Grid Name="editorGrid" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="140"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Column="0" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+            <WrapPanel>
+            <ItemsControl Name="itemsContol" ItemsSource="{Binding Project.Patches}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas  Name="canvas"
                                      MouseLeftButtonDown="CanvasMouseLeftButtonDown"
                                      MouseLeftButtonUp="CanvasMouseLeftButtonUp"
                                      
                                      MouseMove="CanvasMouseMove"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
-                            <Setter Property="Canvas.Top" Value="{Binding PositionY}" />
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left" Value="{Binding PositionX}" />
+                        <Setter Property="Canvas.Top" Value="{Binding PositionY}" />
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding Image}"
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding Image}"
                                    Width="{Binding Image.PixelWidth}"
                                    Height="{Binding Image.PixelHeight}" />
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-                <ItemsControl ItemsSource="{Binding Project.Patches}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <Canvas  Name="selectedcanvas"
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ItemsControl ItemsSource="{Binding Project.Patches}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <Canvas  Name="selectedcanvas"
                                      Grid.Column="0"
                                      IsHitTestVisible="False">
-                                <Canvas.Effect>
-                                    <DropShadowEffect Color="#EE9922"
+                            <Canvas.Effect>
+                                <DropShadowEffect Color="#EE9922"
                                                       BlurRadius="10"
                                                       ShadowDepth="0"
                                                       Opacity="1"/>
-                                </Canvas.Effect>
-                            </Canvas>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
+                            </Canvas.Effect>
+                        </Canvas>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
 
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter Property="Canvas.Left"
+                <ItemsControl.ItemContainerStyle>
+                    <Style>
+                        <Setter Property="Canvas.Left"
                                     Value="{Binding PositionX}" />
-                            <Setter Property="Canvas.Top"
+                        <Setter Property="Canvas.Top"
                                     Value="{Binding PositionY}" />
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
+                    </Style>
+                </ItemsControl.ItemContainerStyle>
 
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Rectangle Width="{Binding Image.PixelWidth}"
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Rectangle Width="{Binding Image.PixelWidth}"
                                        Height="{Binding Image.PixelHeight}"
                                        Fill="#30FF0000"
                                        Visibility="{Binding Selected, Converter={StaticResource BoolToVisibilityConverter}}">
-                                <Rectangle.OpacityMask>
-                                    <ImageBrush ImageSource="{Binding Image}" />
-                                </Rectangle.OpacityMask>
-                            </Rectangle>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                            <Rectangle.OpacityMask>
+                                <ImageBrush ImageSource="{Binding Image}" />
+                            </Rectangle.OpacityMask>
+                        </Rectangle>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            
+            </WrapPanel>
+            </Border>
 
-                <Grid Grid.Column="1">
+
+            <Border Grid.Column="1" BorderBrush="Black" BorderThickness="1" CornerRadius="5">
+                <Grid  Background="Lavender" >
+
                     <Grid.RowDefinitions>
                         <RowDefinition Height="20"/>
                         <RowDefinition Height="*"/>
@@ -185,10 +205,12 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
+
                 </Grid>
+            </Border>
 
-            </Grid>
 
-        </DockPanel>
+        </Grid>
+
     </Grid>
 </Window>

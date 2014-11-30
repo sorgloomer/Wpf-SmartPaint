@@ -37,11 +37,18 @@ namespace SmartPaint
             System.Threading.Thread.CurrentThread.CurrentCulture =
                 new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
-            this.MouseAction = new EraseAction();
+            this.EraseAction = new EraseAction();
+            this.DrawAction = new DrawAction();
+            this.MoveAction = new MoveAction();
+            this.CurrentMouseAction = MoveAction;
             ApplicationContext.Instance.OnLoad(this);
         }
 
-        public IMouseAction MouseAction { get; set; }
+        public IMouseAction CurrentMouseAction { get; set; }
+        public EraseAction EraseAction { get; set; }
+        public DrawAction DrawAction { get; set; }
+        public MoveAction MoveAction { get; set; }
+
         private DocumentScope viewModel;
         public DocumentScope ViewModel
         {
@@ -94,7 +101,7 @@ namespace SmartPaint
         {
             var canvas = (UIElement)sender;
             canvas.CaptureMouse();
-            var ma = this.MouseAction;
+            var ma = this.CurrentMouseAction;
             if (ma != null)
             {
                 ma.Project = this.ViewModel == null ? null : this.ViewModel.Project;
@@ -107,7 +114,7 @@ namespace SmartPaint
         {
             var canvas = (UIElement)sender;
             canvas.ReleaseMouseCapture();
-            var ma = this.MouseAction;
+            var ma = this.CurrentMouseAction;
             if (ma != null)
             {
                 var position = e.GetPosition(canvas);
@@ -118,7 +125,7 @@ namespace SmartPaint
         private void CanvasMouseMove(object sender, MouseEventArgs e)
         {
             var canvas = (UIElement)sender;
-            var ma = this.MouseAction;
+            var ma = this.CurrentMouseAction;
             if (ma != null)
             {
                 var position = e.GetPosition(canvas);
@@ -148,6 +155,26 @@ namespace SmartPaint
             Properties.Settings.Default.Lang = "hu-HU";
             Properties.Settings.Default.Save();
             System.Windows.MessageBox.Show(SmartPaint.Properties.Resources.PleaseRestart, SmartPaint.Properties.Resources.Warning, new MessageBoxButton(), MessageBoxImage.Exclamation);
+        }
+
+        private void colorPicker_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color> e)
+        {
+            DrawAction.Color = e.NewValue;
+        }
+
+        private void MoveMode_Checked_1(object sender, RoutedEventArgs e)
+        {
+            CurrentMouseAction = MoveAction;
+        }
+
+        private void BrushMode_Checked_1(object sender, RoutedEventArgs e)
+        {
+            CurrentMouseAction = DrawAction;
+        }
+
+        private void EraseMode_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentMouseAction = EraseAction;
         }
 
     }
