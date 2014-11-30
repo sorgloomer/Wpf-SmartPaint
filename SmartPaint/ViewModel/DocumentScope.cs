@@ -123,35 +123,21 @@ namespace SmartPaint.ViewModel
 
         public void CopyPatch()
         {
-            var newList = this.Project.Patches;
-            int idx = newList.FindIndex(p => p.Selected);
-            if (idx >= 0)
-            {
-                newList = newList.ToList();
-                Patch toMove = newList.ElementAt(idx);
-                var newPatch = SmartPaint.Common.CopyPatch.Copy(toMove);
-                newList.Insert(idx + 1, newPatch);
-                foreach (var item in newList)
-                {
-                    item.Selected = item == newPatch;
-                }
-                Project.Patches = newList;
-                this.OnSelectionChanged();
-            }
+            var project = this.Project;
+            var selected = project.Patches.Where(p => p.Selected).ToList();
+            var copy = selected.Select(SmartPaint.Common.CopyPatch.Copy).ToList();
+            foreach (var p in selected) p.Selected = false;
+            foreach (var p in copy) p.Selected = true;
+            var newList = new List<Patch>(project.Patches);
+            newList.AddRange(copy);
+            project.Patches = newList;
+            this.OnSelectionChanged();
         }
 
         public void RemovePatch()
         {
-            var newList = this.Project.Patches;
-            int idx = newList.FindIndex(p => p.Selected);
-            if (idx >= 0)
-            {
-                newList = newList.ToList();
-                Patch toMove = newList.ElementAt(idx);
-                newList.RemoveAt(idx);
-                Project.Patches = newList;
-                this.OnSelectionChanged();
-            }
+            this.Project.Patches = this.Project.Patches.Where(p => !p.Selected).ToList();
+            this.OnSelectionChanged();
         }
     }
 }
