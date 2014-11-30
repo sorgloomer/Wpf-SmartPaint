@@ -37,6 +37,7 @@ namespace SmartPaint
             System.Threading.Thread.CurrentThread.CurrentCulture =
                 new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
+            this.EraseAction = new EraseAction();
             this.DrawAction = new DrawAction();
             this.MoveAction = new MoveAction();
             this.CurrentMouseAction = MoveAction;
@@ -44,6 +45,7 @@ namespace SmartPaint
         }
 
         public IMouseAction CurrentMouseAction { get; set; }
+        public EraseAction EraseAction { get; set; }
         public DrawAction DrawAction { get; set; }
         public MoveAction MoveAction { get; set; }
 
@@ -167,6 +169,11 @@ namespace SmartPaint
         private void BrushMode_Checked_1(object sender, RoutedEventArgs e)
         {
             CurrentMouseAction = DrawAction;
+        }
+
+        private void EraseMode_Checked(object sender, RoutedEventArgs e)
+        {
+            CurrentMouseAction = EraseAction;
         }
 
     }

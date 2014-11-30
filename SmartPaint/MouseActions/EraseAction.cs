@@ -11,27 +11,24 @@ using System.Windows.Shapes;
 
 namespace SmartPaint.MouseActions
 {
-    public class DrawAction : IMouseAction
+    public class EraseAction : IMouseAction
     {
         public Model.Project Project { get; set; }
-        public Color Color { get; set; }
         public double Radius { get; set; }
         public Point LastMousePosition { get; set; }
-        public RenderTargetBitmap Target { get; set; }
-        private Vector delta;
-        private SolidColorBrush brush;
-        private Pen pen;
 
-        public DrawAction() : this(null)
+        public WriteableBitmap wbitmap;
+        private Vector delta;
+        private byte[] blankPixels;
+        private int blankWidth;
+
+        public EraseAction() : this(null)
         {
         }
-        public DrawAction(Project project)
+        public EraseAction(Project project)
         {
             this.Project = project;
-            this.Color = Colors.Black;
             this.Radius = 5;
-            this.brush = new SolidColorBrush(Colors.Black);
-            this.pen = new Pen(this.brush, this.Radius);
         }
 
         public void MouseLeftDown(Point position)
@@ -40,31 +37,31 @@ namespace SmartPaint.MouseActions
             if (sel != null)
             {
                 this.delta = new Vector(sel.PositionX, sel.PositionY);
-                this.Target = sel.GetRenderTargetBitmap();
-                this.brush.Color = this.Color;
-                this.pen.Thickness = this.Radius;
-                this.pen.StartLineCap = this.pen.EndLineCap = PenLineCap.Round;
+                this.wbitmap = sel.GetWriteableBitmap();
+                this.blankWidth = (int)(this.Radius * 2);
+                // Erasing in WPF is more like a joke...
+                // Here we're just allocating an empty array. Because we have to have an empty array.
+                this.blankPixels = new byte[this.blankWidth * this.blankWidth * 4];
                 this.LastMousePosition = position;
             }
         }
 
         public void MouseLeftUp(Point position)
         {
-            this.Target = null;
+            this.wbitmap = null;
             this.LastMousePosition = position;
         }
 
         public void MouseMove(Point position)
         {
-            if (this.Target != null)
+            if (this.wbitmap != null)
             {
-                var dv = new DrawingVisual();
-                var dc = dv.RenderOpen();
-                dc.DrawLine(this.pen, this.LastMousePosition - this.delta, position - this.delta);
-                dc.Close();
-
-                this.Target.Render(dv);
-                this.LastMousePosition = position;
+                this.wbitmap.WritePixels(
+                    new Int32Rect(0, 0, this.blankWidth, this.blankWidth),
+                    this.blankPixels,
+                    this.blankWidth * 4,
+                    (int)(position.X - this.Radius),
+                    (int)(position.Y - this.Radius));
             }
         }
     }

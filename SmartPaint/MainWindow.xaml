@@ -77,7 +77,8 @@
                     <Image Source="Images/move.png" Width="16" Height="16" />
                 </RadioButton.Content>
             </RadioButton>
-            <RadioButton Name="EraseMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.EraserTooltip1}">
+            <RadioButton Name="EraseMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.EraserTooltip1}"
+                         Checked="EraseMode_Checked">
                 <RadioButton.Content>
                     <Image Source="Images/erase.png" Width="16" Height="16" />
                 </RadioButton.Content>
