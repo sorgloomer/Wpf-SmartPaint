@@ -37,12 +37,16 @@ namespace SmartPaint
             System.Threading.Thread.CurrentThread.CurrentCulture =
                 new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
-            this.MouseAction = new DrawAction();
+            this.DrawAction = new DrawAction();
+            this.MoveAction = new MoveAction();
+            this.CurrentMouseAction = MoveAction;
             ApplicationContext.Instance.OnLoad(this);
         }
 
-        public DrawAction MouseAction { get; set; }
-        //public DrawAction DrawAction { get; set; }
+        public IMouseAction CurrentMouseAction { get; set; }
+        public DrawAction DrawAction { get; set; }
+        public MoveAction MoveAction { get; set; }
+
         private DocumentScope viewModel;
         public DocumentScope ViewModel
         {
@@ -95,7 +99,7 @@ namespace SmartPaint
         {
             var canvas = (UIElement)sender;
             canvas.CaptureMouse();
-            var ma = this.MouseAction;
+            var ma = this.CurrentMouseAction;
             if (ma != null)
             {
                 ma.Project = this.ViewModel == null ? null : this.ViewModel.Project;
@@ -108,7 +112,7 @@ namespace SmartPaint
         {
             var canvas = (UIElement)sender;
             canvas.ReleaseMouseCapture();
-            var ma = this.MouseAction;
+            var ma = this.CurrentMouseAction;
             if (ma != null)
             {
                 var position = e.GetPosition(canvas);
@@ -119,7 +123,7 @@ namespace SmartPaint
         private void CanvasMouseMove(object sender, MouseEventArgs e)
         {
             var canvas = (UIElement)sender;
-            var ma = this.MouseAction;
+            var ma = this.CurrentMouseAction;
             if (ma != null)
             {
                 var position = e.GetPosition(canvas);
@@ -153,7 +157,17 @@ namespace SmartPaint
 
         private void colorPicker_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color> e)
         {
-            MouseAction.Color = e.NewValue;
+            DrawAction.Color = e.NewValue;
+        }
+
+        private void MoveMode_Checked_1(object sender, RoutedEventArgs e)
+        {
+            CurrentMouseAction = MoveAction;
+        }
+
+        private void BrushMode_Checked_1(object sender, RoutedEventArgs e)
+        {
+            CurrentMouseAction = DrawAction;
         }
 
     }

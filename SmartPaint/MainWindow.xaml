@@ -70,16 +70,24 @@
                 </Button.Content>
             </Button>
             <Separator></Separator>
-            <Button ToolTip="{x:Static p:Resources.EraserTooltip1}">
-                <Button.Content>
+
+            <RadioButton Name="MoveMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.BrushTooltip1}" 
+                         IsChecked="True" Checked="MoveMode_Checked_1">
+                <RadioButton.Content>
+                    <Image Source="Images/move.png" Width="16" Height="16" />
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton Name="EraseMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.EraserTooltip1}">
+                <RadioButton.Content>
                     <Image Source="Images/erase.png" Width="16" Height="16" />
-                </Button.Content>
-            </Button>
-            <Button ToolTip="{x:Static p:Resources.BrushTooltip1}">
-                <Button.Content>
+                </RadioButton.Content>
+            </RadioButton>
+            <RadioButton Name="BrushMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.BrushTooltip1}"
+                         Checked="BrushMode_Checked_1">
+                <RadioButton.Content>
                     <Image Source="Images/brush.png" Width="16" Height="16" />
-                </Button.Content>
-            </Button>
+                </RadioButton.Content>
+            </RadioButton>
 
             <wpfTool:ColorPicker Name="colorPicker" SelectedColorChanged="colorPicker_SelectedColorChanged_1"></wpfTool:ColorPicker>
         </ToolBar>
