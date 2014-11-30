@@ -32,13 +32,12 @@ namespace SmartPaint
 
         public MainWindow()
         {
-            
             System.Threading.Thread.CurrentThread.CurrentUICulture =
-            new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             System.Threading.Thread.CurrentThread.CurrentCulture =
-           new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+                new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
-            this.MouseAction = new MoveAction();
+            this.MouseAction = new DrawAction();
             ApplicationContext.Instance.OnLoad(this);
         }
 

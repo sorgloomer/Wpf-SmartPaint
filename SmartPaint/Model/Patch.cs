@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace SmartPaint.Model
@@ -71,6 +72,37 @@ namespace SmartPaint.Model
                     var wbitmap = new WriteableBitmap(this.Image);
                     this.Image = wbitmap;
                     return wbitmap;
+                }
+            }
+        }
+        public RenderTargetBitmap GetRenderTargetBitmap()
+        {
+            if (this.Image == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (this.Image is RenderTargetBitmap)
+                {
+                    return (RenderTargetBitmap)this.Image;
+                }
+                else
+                {
+                    var oldimg = this.Image;
+                    var rbitmap = new RenderTargetBitmap(
+                        oldimg.PixelWidth,
+                        oldimg.PixelHeight,
+                        96, 96,
+                        PixelFormats.Pbgra32);
+
+                    var dv = new DrawingVisual();
+                    var dc = dv.RenderOpen();
+                    dc.DrawImage(oldimg, new Rect(0, 0, oldimg.PixelWidth, oldimg.PixelHeight));
+                    dc.Close();
+                    rbitmap.Render(dv);
+                    this.Image = rbitmap;
+                    return rbitmap;
                 }
             }
         }
