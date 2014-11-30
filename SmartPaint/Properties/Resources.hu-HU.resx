@@ -192,4 +192,13 @@
   <data name="Warning" xml:space="preserve">
     <value>Figyelmeztetés</value>
   </data>
+  <data name="LayerDownTooltip1" xml:space="preserve">
+    <value>Hátrébb mozgatás a kirajzolási sorrendben</value>
+  </data>
+  <data name="LayerUpTooltip1" xml:space="preserve">
+    <value>Előrébb mozgatás a kirajzolási sorrendben</value>
+  </data>
+  <data name="MoveTooltip1" xml:space="preserve">
+    <value>Mozgatás</value>
+  </data>
 </root>

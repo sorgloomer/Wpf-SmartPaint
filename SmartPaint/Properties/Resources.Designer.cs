@@ -178,6 +178,24 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move backwards in draw order.
+        /// </summary>
+        public static string LayerDownTooltip1 {
+            get {
+                return ResourceManager.GetString("LayerDownTooltip1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move forward in draw order.
+        /// </summary>
+        public static string LayerUpTooltip1 {
+            get {
+                return ResourceManager.GetString("LayerUpTooltip1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SmartPaint.
         /// </summary>
         public static string MainTitle {
@@ -192,6 +210,15 @@ namespace SmartPaint.Properties {
         public static string MoreHelp {
             get {
                 return ResourceManager.GetString("MoreHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move.
+        /// </summary>
+        public static string MoveTooltip1 {
+            get {
+                return ResourceManager.GetString("MoveTooltip1", resourceCulture);
             }
         }
         
