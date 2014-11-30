@@ -259,7 +259,7 @@
                                        Height="16" />
                             </Button.Content>
                         </Button>
-                        <TextBlock Width="20" />
+                        <TextBlock Width="10" />
                         <Button IsEnabled="{Binding CopyPatchActive}"
                                 Click="CopyPatch"
                                 ToolTip="{x:Static p:Resources.CopyPatchTooltip1}">
@@ -294,7 +294,8 @@
                                     <TextBox Text="{Binding Name, Mode=TwoWay}"
                                              Width="100" />
                                     <Image Source="{Binding Image}"
-                                           Width="100" />
+                                           Width="100" 
+                                           MaxHeight="100"/>
                                 </StackPanel>
                             </DataTemplate>
                         </ListView.ItemTemplate>

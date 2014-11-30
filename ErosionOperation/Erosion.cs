@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace DefaultOperations
+namespace ErosionOperation
 {
     public class Erosion : ITransformation
     {
