@@ -178,8 +178,8 @@
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <StackPanel>
-                                    <TextBlock Text="{Binding Name,FallbackValue='NoName'}" />
+                                <StackPanel >
+                                    <TextBox Text="{Binding Name, Mode=TwoWay}"/>
                                     <Image Source="{Binding Image}" Width="100"/>
                                 </StackPanel>
                             </DataTemplate>
