@@ -5,6 +5,7 @@ using SmartPaint.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,7 +81,6 @@ namespace SmartPaint.Common
                 SptFile.Save(dlg.FileName, this.ViewModel.Project);
             }
         }
-
         public void CreateProjectDialog()
         {
             /*Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
@@ -109,8 +109,19 @@ namespace SmartPaint.Common
 
         public void ExportPictureDialog()
         {
-            //TODO: export to .png
-            //throw new NotImplementedException();
+            var dlg = new Microsoft.Win32.SaveFileDialog();
+            SetPictureDialog(dlg);
+            Nullable<bool> result = dlg.ShowDialog();
+            if (result.HasValue && result.Value)
+            {
+                var merged = MergePatches.DoMerge(this.ViewModel.Project.Patches.ToList());
+                var png = new PngBitmapEncoder();
+                png.Frames.Add(BitmapFrame.Create(merged.Image));
+                using (var file = File.Open(dlg.FileName, FileMode.OpenOrCreate))
+                {
+                    png.Save(file);
+                }
+            }
         }
 
 
