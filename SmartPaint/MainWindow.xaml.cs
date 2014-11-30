@@ -34,6 +34,8 @@ namespace SmartPaint
             
             System.Threading.Thread.CurrentThread.CurrentUICulture =
             new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
+            System.Threading.Thread.CurrentThread.CurrentCulture =
+           new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
 
             ApplicationContext.Instance.OnLoad(this);
