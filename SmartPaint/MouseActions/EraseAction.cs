@@ -60,8 +60,8 @@ namespace SmartPaint.MouseActions
                     new Int32Rect(0, 0, this.blankWidth, this.blankWidth),
                     this.blankPixels,
                     this.blankWidth * 4,
-                    (int)(position.X - this.Radius),
-                    (int)(position.Y - this.Radius));
+                    (int)(position.X - this.Radius - this.delta.X),
+                    (int)(position.Y - this.Radius - this.delta.Y));
             }
         }
     }

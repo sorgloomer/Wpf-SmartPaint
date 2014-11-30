@@ -175,6 +175,5 @@ namespace SmartPaint
         {
             CurrentMouseAction = EraseAction;
         }
-
     }
 }
