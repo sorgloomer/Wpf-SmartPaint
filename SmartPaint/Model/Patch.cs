@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartPaint.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -39,7 +40,40 @@ namespace SmartPaint.Model
         }
         
         public string Name { get; set; }
-        public BitmapSource Image { get; set; }
+        private BitmapSource image;
+        public BitmapSource Image
+        {
+            get
+            {
+                return this.image;
+            }
+            set
+            {
+                this.image = value;
+                this.NotifyPropertyChanged("Image");
+            }
+        }
+
+        public WriteableBitmap GetWriteableBitmap()
+        {
+            if (this.Image == null)
+            {
+                return null;
+            }
+            else
+            {
+                if (this.Image is WriteableBitmap)
+                {
+                    return (WriteableBitmap)this.Image;
+                }
+                else
+                {
+                    var wbitmap = new WriteableBitmap(this.Image);
+                    this.Image = wbitmap;
+                    return wbitmap;
+                }
+            }
+        }
 
         public Patch(string name, BitmapSource image, int posX, int posY) 
         {
