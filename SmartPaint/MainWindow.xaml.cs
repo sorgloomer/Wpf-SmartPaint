@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using SmartPaint.Persistence;
 using SmartPaint.ViewModel;
 using System.Windows.Controls;
+using SmartPaint.MouseActions;
 
 namespace SmartPaint
 {
@@ -37,10 +38,11 @@ namespace SmartPaint
             System.Threading.Thread.CurrentThread.CurrentCulture =
            new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
-
+            this.MouseAction = new MoveAction();
             ApplicationContext.Instance.OnLoad(this);
         }
 
+        public IMouseAction MouseAction { get; set; }
         private DocumentScope viewModel;
         public DocumentScope ViewModel
         {
@@ -89,42 +91,39 @@ namespace SmartPaint
             Application.Current.Shutdown();
         }
 
-        private Dictionary<Patch,System.Windows.Vector> mouseDistanceFromObject;
-
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            ((UIElement)sender).CaptureMouse();
-            mouseDistanceFromObject = new Dictionary<Patch, System.Windows.Vector>();
-            foreach (Patch p in ViewModel.Project.Patches)
+            var canvas = (UIElement)sender;
+            canvas.CaptureMouse();
+            var ma = this.MouseAction;
+            if (ma != null)
             {
-                mouseDistanceFromObject.Add(p,(e.GetPosition((Canvas)sender) -new System.Windows.Point(p.PositionX, p.PositionY)));
+                ma.Project = this.ViewModel == null ? null : this.ViewModel.Project;
+                var position = e.GetPosition(canvas);
+                ma.MouseLeftDown(position);
             }
-
         }
 
         private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            ((UIElement)sender).ReleaseMouseCapture();
-            mouseDistanceFromObject = null;
+            var canvas = (UIElement)sender;
+            canvas.ReleaseMouseCapture();
+            var ma = this.MouseAction;
+            if (ma != null)
+            {
+                var position = e.GetPosition(canvas);
+                ma.MouseLeftUp(position);
+            }
         }
 
         private void CanvasMouseMove(object sender, MouseEventArgs e)
         {
-            if (mouseDistanceFromObject != null)
+            var canvas = (UIElement)sender;
+            var ma = this.MouseAction;
+            if (ma != null)
             {
-                var position = e.GetPosition((Canvas)sender);
-
-
-                foreach (Patch p in ViewModel.Project.Patches)
-                {
-                    if (p.Selected)
-                    {
-                        var offset = (position - mouseDistanceFromObject[p]);
-                        p.PositionX = (int)offset.X;
-                        p.PositionY = (int)offset.Y;
-
-                    }
-                }
+                var position = e.GetPosition(canvas);
+                ma.MouseMove(position);
             }
         }
 
