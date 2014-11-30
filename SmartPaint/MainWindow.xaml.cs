@@ -41,7 +41,8 @@ namespace SmartPaint
             ApplicationContext.Instance.OnLoad(this);
         }
 
-        public IMouseAction MouseAction { get; set; }
+        public DrawAction MouseAction { get; set; }
+        //public DrawAction DrawAction { get; set; }
         private DocumentScope viewModel;
         public DocumentScope ViewModel
         {
@@ -148,6 +149,11 @@ namespace SmartPaint
             Properties.Settings.Default.Lang = "hu-HU";
             Properties.Settings.Default.Save();
             System.Windows.MessageBox.Show(SmartPaint.Properties.Resources.PleaseRestart, SmartPaint.Properties.Resources.Warning, new MessageBoxButton(), MessageBoxImage.Exclamation);
+        }
+
+        private void colorPicker_SelectedColorChanged_1(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color> e)
+        {
+            MouseAction.Color = e.NewValue;
         }
 
     }
