@@ -79,6 +79,15 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicate selected.
+        /// </summary>
+        public static string CopyPatchTooltip1 {
+            get {
+                return ResourceManager.GetString("CopyPatchTooltip1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Created by:.
         /// </summary>
         public static string CreatedBy {
@@ -264,6 +273,15 @@ namespace SmartPaint.Properties {
         public static string Project {
             get {
                 return ResourceManager.GetString("Project", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove selected.
+        /// </summary>
+        public static string RemovePatchTooltip1 {
+            get {
+                return ResourceManager.GetString("RemovePatchTooltip1", resourceCulture);
             }
         }
         

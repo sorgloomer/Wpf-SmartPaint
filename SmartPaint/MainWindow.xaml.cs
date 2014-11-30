@@ -156,11 +156,6 @@ namespace SmartPaint
             }
         }
 
-        private void MovePatchUp(object sender, RoutedEventArgs e)
-        {
-            viewModel.MovePatchUp();
-        }
-
         private void AbortMouseAction()
         {
             try
@@ -173,9 +168,24 @@ namespace SmartPaint
             }
         }
 
+        private void MovePatchUp(object sender, RoutedEventArgs e)
+        {
+            viewModel.MovePatchUp();
+        }
+
         private void MovePatchDown(object sender, RoutedEventArgs e)
         {
             viewModel.MovePatchDown();
+        }
+
+        private void CopyPatch(object sender, RoutedEventArgs e)
+        {
+            viewModel.CopyPatch();
+        }
+
+        private void RemovePatch(object sender, RoutedEventArgs e)
+        {
+            viewModel.RemovePatch();
         }
 
         private void setEnglish_Click_1(object sender, RoutedEventArgs e)

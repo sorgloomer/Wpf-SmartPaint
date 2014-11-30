@@ -201,4 +201,10 @@
   <data name="MoveTooltip1" xml:space="preserve">
     <value>Mozgatás</value>
   </data>
+  <data name="CopyPatchTooltip1" xml:space="preserve">
+    <value>Másolás</value>
+  </data>
+  <data name="RemovePatchTooltip1" xml:space="preserve">
+    <value>Törlés</value>
+  </data>
 </root>

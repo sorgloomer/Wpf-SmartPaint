@@ -198,4 +198,10 @@
   <data name="MoveTooltip1" xml:space="preserve">
     <value>Move</value>
   </data>
+  <data name="CopyPatchTooltip1" xml:space="preserve">
+    <value>Duplicate selected</value>
+  </data>
+  <data name="RemovePatchTooltip1" xml:space="preserve">
+    <value>Remove selected</value>
+  </data>
 </root>

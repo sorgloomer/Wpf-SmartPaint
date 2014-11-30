@@ -201,4 +201,10 @@
   <data name="LayerUpTooltip1" xml:space="preserve">
     <value>Move forward in draw order</value>
   </data>
+  <data name="CopyPatchTooltip1" xml:space="preserve">
+    <value>Duplicate selected</value>
+  </data>
+  <data name="RemovePatchTooltip1" xml:space="preserve">
+    <value>Remove selected</value>
+  </data>
 </root>

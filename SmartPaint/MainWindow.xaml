@@ -163,7 +163,7 @@
                                   ItemsSource="{Binding Project.Patches}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <Canvas  Name="canvas" />
+                                <Canvas Name="canvas" />
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
 
@@ -255,6 +255,26 @@
                                 ToolTip="{x:Static p:Resources.LayerDownTooltip1}">
                             <Button.Content>
                                 <Image Source="Images/down.png"
+                                       Width="16"
+                                       Height="16" />
+                            </Button.Content>
+                        </Button>
+                        <TextBlock Width="20" />
+                        <Button IsEnabled="{Binding CopyPatchActive}"
+                                Click="CopyPatch"
+                                ToolTip="{x:Static p:Resources.CopyPatchTooltip1}">
+                            <Button.Content>
+                                <Image Source="Images/copy.png"
+                                       Width="16"
+                                       Height="16" />
+                            </Button.Content>
+                        </Button>
+                        <TextBlock Width="10" />
+                        <Button IsEnabled="{Binding RemovePatchActive}"
+                                Click="RemovePatch"
+                                ToolTip="{x:Static p:Resources.RemovePatchTooltip1}">
+                            <Button.Content>
+                                <Image Source="Images/trash.png"
                                        Width="16"
                                        Height="16" />
                             </Button.Content>
