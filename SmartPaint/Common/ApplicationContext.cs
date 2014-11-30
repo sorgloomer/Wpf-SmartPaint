@@ -90,7 +90,7 @@ namespace SmartPaint.Common
             //TODO: if (result) {actually create project}
 
             //TODO: ezt kitalálni, hogy legyen
-            this.ViewModel.Project.Patches = new ObservableCollection<Patch>() { };
+            this.ViewModel.Project.Patches = new List<Patch>() { };
         }
 
         public void ImportPictureDialog()
@@ -103,7 +103,9 @@ namespace SmartPaint.Common
             {
                 int c = this.ViewModel.Project.Patches.Count+1;
                 BitmapImage bImg = new BitmapImage(new Uri(dlg.FileName, UriKind.Absolute));
-                this.ViewModel.Project.Patches.Add(new Patch("patch" + c, bImg, 200, 200));
+                var newList = this.ViewModel.Project.Patches.ToList();
+                newList.Add(new Patch("patch" + c, bImg, 200, 200));
+                this.ViewModel.Project.Patches = newList;
             }
         }
 

@@ -155,12 +155,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Grid.Row="0">
-                        <Button>
+                        <Button IsEnabled="{Binding UpMovingActive}" Click="MovePatchUp">
                             <Button.Content>
                                 <Image Source="Images/up.png" Width="16" Height="16" />
                             </Button.Content>
                         </Button>
-                        <Button>
+                        <Button IsEnabled="{Binding DownMovingActive}" Click="MovePatchDown">
                             <Button.Content>
                                 <Image Source="Images/down.png" Width="16" Height="16" />
                             </Button.Content>

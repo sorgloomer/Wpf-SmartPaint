@@ -136,7 +136,7 @@ namespace SmartPaint.Persistence
             this.idByPicture = null;
             this.zipFile = null;
             return this.Project = new Project() { 
-                Patches = new ObservableCollection<Patch>(patches)
+                Patches = new List<Patch>(patches)
             };
         }
 

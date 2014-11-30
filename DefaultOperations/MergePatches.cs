@@ -86,7 +86,7 @@ namespace DefaultOperations
                     this.DetermineBounds();
                     this.wbitmap = CreateBitmap(this.rectR - this.rectX, this.rectB - this.rectY, 96, this.DrawPatches);
                     var patches = this.BuildNewPatches();
-                    project.Patches = new ObservableCollection<Patch>(patches);
+                    project.Patches = new List<Patch>(patches);
                 }
             }
             finally

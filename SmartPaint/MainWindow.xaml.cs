@@ -124,5 +124,15 @@ namespace SmartPaint
             }
         }
 
+        private void MovePatchUp(object sender, RoutedEventArgs e)
+        {
+            viewModel.MovePatchUp();   
+        }
+
+        private void MovePatchDown(object sender, RoutedEventArgs e)
+        {
+            viewModel.MovePatchDown();
+        }
+
     }
 }
