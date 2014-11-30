@@ -60,7 +60,6 @@ namespace SmartPaint
             }
         }
 
-        //TODO: no hardcoded strings! I am not sure it is a good idea to create UI from code.
         private void OpenProjectClick(object sender, RoutedEventArgs e)
         {
             ApplicationContext.Instance.OpenProjectDialog();

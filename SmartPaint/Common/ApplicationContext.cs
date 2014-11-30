@@ -69,13 +69,6 @@ namespace SmartPaint.Common
         }
         public void CreateProjectDialog()
         {
-            /*Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
-            SetProjectDialog(dlg);
-            Nullable<bool> result = dlg.ShowDialog();*/
-
-            //TODO: if (result) {actually create project}
-
-            //TODO: ezt kitalálni, hogy legyen
             this.ViewModel.Project.Patches = new List<Patch>() { };
         }
 

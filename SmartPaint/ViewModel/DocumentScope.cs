@@ -56,8 +56,6 @@ namespace SmartPaint.ViewModel
             this.Transformations = new ObservableCollection<ITransformation>();
             this.Project = new Project();
         }
-
-        //TODO: notifypropertychanged
         public bool UpMovingActive
         {
             
