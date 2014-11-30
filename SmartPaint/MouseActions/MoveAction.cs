@@ -27,7 +27,7 @@ namespace SmartPaint.MouseActions
             this.deltaPosition = new Dictionary<Patch, System.Windows.Vector>();
             foreach (Patch p in this.Project.Patches)
             {
-                this.deltaPosition.Add(p, new System.Windows.Point(p.PositionX, p.PositionY) - position);
+                this.deltaPosition[p] = new System.Windows.Point(p.PositionX, p.PositionY) - position;
             }
         }
 

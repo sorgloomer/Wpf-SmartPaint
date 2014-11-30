@@ -33,7 +33,7 @@ namespace SmartPaint.Persistence
             {
                 if (!this.idByPicture.ContainsKey(p.Image))
                 {
-                    this.idByPicture.Add(p.Image, pictureCounter++);
+                    this.idByPicture[p.Image] = pictureCounter++;
                 }
             }
         }
@@ -107,7 +107,7 @@ namespace SmartPaint.Persistence
                 ms.Position = 0;
                 image.StreamSource = ms;
                 image.EndInit();
-                this.pictureById.Add(id, image);
+                this.pictureById[id] = image;
             }
             return image;
         }
