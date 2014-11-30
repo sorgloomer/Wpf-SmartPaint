@@ -37,7 +37,7 @@ namespace SmartPaint
             System.Threading.Thread.CurrentThread.CurrentCulture =
                 new System.Globalization.CultureInfo(Properties.Settings.Default.Lang);
             InitializeComponent();
-            this.MouseAction = new DrawAction();
+            this.MouseAction = new EraseAction();
             ApplicationContext.Instance.OnLoad(this);
         }
 

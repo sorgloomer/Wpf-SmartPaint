@@ -84,6 +84,7 @@
     <Compile Include="Common\MergePatches.cs" />
     <Compile Include="Converter\BoolToVisibilityConverter.cs" />
     <Compile Include="Converter\TransformationToCommandConverter.cs" />
+    <Compile Include="MouseActions\EraseAction.cs" />
     <Compile Include="MouseActions\DrawAction.cs" />
     <Compile Include="MouseActions\IMouseAction.cs" />
     <Compile Include="MouseActions\MoveAction.cs" />
