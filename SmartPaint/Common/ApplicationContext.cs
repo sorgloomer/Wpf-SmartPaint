@@ -103,7 +103,7 @@ namespace SmartPaint.Common
             {
                 int c = this.ViewModel.Project.Patches.Count+1;
                 BitmapImage bImg = new BitmapImage(new Uri(dlg.FileName, UriKind.Absolute));
-                this.ViewModel.Project.Patches.Add(new Patch("patch" + c, bImg, 200, 200));
+                this.ViewModel.Project.Patches.Add(new Patch("patch" + c, bImg, 0, 0));
             }
         }
 
