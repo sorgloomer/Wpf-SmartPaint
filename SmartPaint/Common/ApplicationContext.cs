@@ -56,30 +56,16 @@ namespace SmartPaint.Common
 
         public void OpenProjectDialog()
         {
-            try
+            var fp = new FilePersistence();
+            if (fp.OpenFromFile())
             {
-                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
-                SetProjectDialog(dlg);
-                Nullable<bool> result = dlg.ShowDialog();
-                if (result.HasValue && result.Value)
-                {
-                    this.ViewModel.Project = SptFile.From(dlg.FileName);
-                }
-            }
-            catch (Exception)
-            {
-                StaticLogger.Error("There was an error while opening the file!");
+                this.ViewModel.Project = fp.Project;
             }
         }
         public void SaveProjectDialog()
         {
-            var dlg = new Microsoft.Win32.SaveFileDialog();
-            SetProjectDialog(dlg);
-            Nullable<bool> result = dlg.ShowDialog();
-            if (result.HasValue && result.Value)
-            {
-                SptFile.Save(dlg.FileName, this.ViewModel.Project);
-            }
+            var fp = new FilePersistence() { Project = this.ViewModel.Project };
+            fp.SaveToFile();
         }
         public void CreateProjectDialog()
         {
@@ -149,12 +135,6 @@ namespace SmartPaint.Common
 
         public static ApplicationContext Instance = new ApplicationContext();
 
-        private static void SetProjectDialog(Microsoft.Win32.FileDialog dlg)
-        {
-            dlg.FileName = "MyProject";
-            dlg.DefaultExt = ".spt";
-            dlg.Filter = "Smart Paint project files (.spt)|*.spt";
-        }
 
         private static void SetPictureDialog(Microsoft.Win32.FileDialog dlg)
         {

@@ -86,6 +86,7 @@
     <Compile Include="Converter\TransformationToCommandConverter.cs" />
     <Compile Include="MouseActions\IMouseAction.cs" />
     <Compile Include="MouseActions\MoveAction.cs" />
+    <Compile Include="Persistence\FilePersistence.cs" />
     <Compile Include="Persistence\SptFile.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\StaticLogger.cs" />
