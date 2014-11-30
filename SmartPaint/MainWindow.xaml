@@ -74,7 +74,7 @@
                 </Button>
                 <Separator></Separator>
 
-                <RadioButton Name="MoveMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.BrushTooltip1}" 
+                <RadioButton Name="MoveMode" GroupName ="mouseActionType" Style="{StaticResource {x:Type ToggleButton}}" ToolTip="{x:Static p:Resources.MoveTooltip1}" 
                          IsChecked="True" Checked="MoveMode_Checked_1">
                     <RadioButton.Content>
                         <Image Source="Images/move.png" Width="16" Height="16" />
@@ -182,12 +182,12 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="20" Grid.Row="0">
-                        <Button IsEnabled="{Binding UpMovingActive}" Click="MovePatchUp">
+                        <Button IsEnabled="{Binding UpMovingActive}" Click="MovePatchUp" ToolTip="{x:Static p:Resources.LayerUpTooltip1}">
                             <Button.Content>
                                 <Image Source="Images/up.png" Width="16" Height="16" />
                             </Button.Content>
                         </Button>
-                        <Button IsEnabled="{Binding DownMovingActive}" Click="MovePatchDown">
+                        <Button IsEnabled="{Binding DownMovingActive}" Click="MovePatchDown" ToolTip="{x:Static p:Resources.LayerDownTooltip1}">
                             <Button.Content>
                                 <Image Source="Images/down.png" Width="16" Height="16" />
                             </Button.Content>
