@@ -79,11 +79,29 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created by:.
+        /// </summary>
+        public static string CreatedBy {
+            get {
+                return ResourceManager.GetString("CreatedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new project.
         /// </summary>
         public static string CreateTooltip1 {
             get {
                 return ResourceManager.GetString("CreateTooltip1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
             }
         }
         
@@ -129,6 +147,15 @@ namespace SmartPaint.Properties {
         public static string Help {
             get {
                 return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hungarian.
+        /// </summary>
+        public static string Hungarian {
+            get {
+                return ResourceManager.GetString("Hungarian", resourceCulture);
             }
         }
         
@@ -196,6 +223,15 @@ namespace SmartPaint.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This action only takes effect after restarting application!.
+        /// </summary>
+        public static string PleaseRestart {
+            get {
+                return ResourceManager.GetString("PleaseRestart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Project.
         /// </summary>
         public static string Project {
@@ -237,6 +273,15 @@ namespace SmartPaint.Properties {
         public static string Unify {
             get {
                 return ResourceManager.GetString("Unify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string Warning {
+            get {
+                return ResourceManager.GetString("Warning", resourceCulture);
             }
         }
     }

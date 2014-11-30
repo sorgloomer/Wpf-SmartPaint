@@ -38,7 +38,10 @@
                         </MenuItem.ItemContainerStyle>
                     </MenuItem>
                     <MenuItem Header="{x:Static p:Resources.Settings}">
-                        <MenuItem Header="{x:Static p:Resources.Language}"/>
+                        <MenuItem Header="{x:Static p:Resources.Language}">
+                            <MenuItem Header="{x:Static p:Resources.English}" Name ="setEnglish" Click="setEnglish_Click_1"/>
+                            <MenuItem Header="{x:Static p:Resources.Hungarian}"  Name ="setHungarian" Click="setHungarian_Click_1"/>
+                        </MenuItem>
                     </MenuItem>
                     <MenuItem Header="{x:Static p:Resources.Help}">
                         <MenuItem Header="{x:Static p:Resources.About}" Click="ShowAbout"/>
