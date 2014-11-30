@@ -1,4 +1,5 @@
 ﻿using SmartPaint.Common;
+using SmartPaint.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,12 +21,27 @@ namespace SmartPaint.Converter
 
             public bool CanExecute(object parameter)
             {
-                return this.Transformation.CanApply(ApplicationContext.Instance.ViewModel.Project);
+                try
+                {
+                    return this.Transformation.CanApply(ApplicationContext.Instance.ViewModel.Project);
+                }
+                catch (Exception)
+                {
+                    StaticLogger.Error(String.Format("Error occured while communicating with plugin '{0}' (CanExecute).", this.Transformation.PrintableName));
+                }
+                return false;
             }
 
             public void Execute(object parameter)
             {
-                this.Transformation.Apply(ApplicationContext.Instance.ViewModel.Project);
+                try
+                {
+                    this.Transformation.Apply(ApplicationContext.Instance.ViewModel.Project);
+                }
+                catch (Exception)
+                {
+                    StaticLogger.Error(String.Format("Error occured while applying with plugin '{0}'.", this.Transformation.PrintableName));
+                }
             }
         }
 
