@@ -48,7 +48,7 @@ namespace DefaultOperations
                 if (this.selectedPatches.Count() > 0)
                 {
                     var patches = this.BuildNewPatches();
-                    project.Patches = new ObservableCollection<Patch>(patches);
+                    project.Patches = new List<Patch>(patches);
                 }
             }
             finally

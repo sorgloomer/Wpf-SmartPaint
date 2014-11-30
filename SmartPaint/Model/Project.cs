@@ -16,23 +16,54 @@ namespace SmartPaint.Model
             if (PropertyChanged != null) PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private ObservableCollection<Patch> patches;
-        public ObservableCollection<Patch> Patches
+        private List<Patch> patches;
+        public List<Patch> Patches
         {
             get { return this.patches; }
             set
             {
                 if (this.patches != value)
                 {
+                    if (this.patches != null)
+                    {
+                        foreach (var item in this.patches)
+                        {
+                            item.PropertyChanged -= this.PatchPropertyChanged;
+                        }
+                    }
                     this.patches = value;
+                    if (this.patches != null)
+                    {
+                        foreach (var item in this.patches)
+                        {
+                            item.PropertyChanged += this.PatchPropertyChanged;
+                        }
+                    }
                     this.NotifyPropertyChanged("Patches");
                 }
             }
         }
 
+        private void PatchPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "Selected")
+            {
+                this.NotifySelectionChanged();
+            }
+        }
+
+        private void NotifySelectionChanged()
+        {
+            var e = this.SelectionChanged;
+            if (e != null) e();
+        }
+
         public Project() 
         {
-            this.Patches = new ObservableCollection<Patch>();
+            this.Patches = new List<Patch>();
         }
+
+
+        public event Action SelectionChanged;
     }
 }

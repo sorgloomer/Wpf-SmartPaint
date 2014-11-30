@@ -43,7 +43,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Copy of MergePatches.cs" />
+    <Compile Include="Erosion.cs" />
     <Compile Include="MergePatches.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
