@@ -91,6 +91,7 @@ namespace SmartPaint
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            ((UIElement)sender).CaptureMouse();
             mouseDistanceFromObject = new Dictionary<Patch, System.Windows.Vector>();
             foreach (Patch p in ViewModel.Project.Patches)
             {
@@ -101,6 +102,7 @@ namespace SmartPaint
 
         private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+            ((UIElement)sender).ReleaseMouseCapture();
             mouseDistanceFromObject = null;
         }
 
