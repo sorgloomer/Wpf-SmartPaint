@@ -53,6 +53,10 @@ namespace SmartPaint.MouseActions
             this.Target = null;
             this.LastMousePosition = position;
         }
+        public void Abort()
+        {
+            this.Target = null;
+        }
 
         public void MouseMove(Point position)
         {

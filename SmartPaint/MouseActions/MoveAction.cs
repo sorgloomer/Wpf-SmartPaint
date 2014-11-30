@@ -35,6 +35,10 @@ namespace SmartPaint.MouseActions
         {
             this.deltaPosition = null;
         }
+        public void Abort()
+        {
+            this.deltaPosition = null;
+        }
 
         public void MouseMove(Point position)
         {

@@ -14,5 +14,6 @@ namespace SmartPaint.MouseActions
         void MouseLeftDown(Point position);
         void MouseLeftUp(Point position);
         void MouseMove(Point position);
+        void Abort();
     }
 }

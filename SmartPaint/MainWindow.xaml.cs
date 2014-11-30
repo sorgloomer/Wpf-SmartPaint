@@ -20,6 +20,7 @@ using SmartPaint.Persistence;
 using SmartPaint.ViewModel;
 using System.Windows.Controls;
 using SmartPaint.MouseActions;
+using SmartPaint.Utils;
 
 namespace SmartPaint
 {
@@ -98,43 +99,78 @@ namespace SmartPaint
 
         private void CanvasMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            var canvas = (UIElement)sender;
-            canvas.CaptureMouse();
-            var ma = this.CurrentMouseAction;
-            if (ma != null)
+            try
             {
-                ma.Project = this.ViewModel == null ? null : this.ViewModel.Project;
-                var position = e.GetPosition(canvas);
-                ma.MouseLeftDown(position);
+                var canvas = (UIElement)sender;
+                canvas.CaptureMouse();
+                var ma = this.CurrentMouseAction;
+                if (ma != null)
+                {
+                    ma.Project = this.ViewModel == null ? null : this.ViewModel.Project;
+                    var position = e.GetPosition(canvas);
+                    ma.MouseLeftDown(position);
+                }
+            }
+            catch (Exception)
+            {
+                StaticLogger.Warn("Mouse action LeftButtonDown failed.");
+                this.AbortMouseAction();
             }
         }
 
         private void CanvasMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            var canvas = (UIElement)sender;
-            canvas.ReleaseMouseCapture();
-            var ma = this.CurrentMouseAction;
-            if (ma != null)
+            try
             {
-                var position = e.GetPosition(canvas);
-                ma.MouseLeftUp(position);
+                var canvas = (UIElement)sender;
+                canvas.ReleaseMouseCapture();
+                var ma = this.CurrentMouseAction;
+                if (ma != null)
+                {
+                    var position = e.GetPosition(canvas);
+                    ma.MouseLeftUp(position);
+                }
+            }
+            catch (Exception)
+            {
+                StaticLogger.Warn("Mouse action LeftButtonUp failed.");
+                this.AbortMouseAction();
             }
         }
 
         private void CanvasMouseMove(object sender, MouseEventArgs e)
         {
-            var canvas = (UIElement)sender;
-            var ma = this.CurrentMouseAction;
-            if (ma != null)
+            try {
+                var canvas = (UIElement)sender;
+                var ma = this.CurrentMouseAction;
+                if (ma != null)
+                {
+                    var position = e.GetPosition(canvas);
+                    ma.MouseMove(position);
+                }
+            }
+            catch (Exception)
             {
-                var position = e.GetPosition(canvas);
-                ma.MouseMove(position);
+                StaticLogger.Warn("Mouse action MouseMove failed.");
+                this.AbortMouseAction();
             }
         }
 
         private void MovePatchUp(object sender, RoutedEventArgs e)
         {
-            viewModel.MovePatchUp();   
+            viewModel.MovePatchUp();
+        }
+
+        private void AbortMouseAction()
+        {
+            try
+            {
+                if (this.CurrentMouseAction != null) this.CurrentMouseAction.Abort();
+            }
+            catch (Exception)
+            {
+                StaticLogger.Warn("Mouse action Abort failed.");
+            }
         }
 
         private void MovePatchDown(object sender, RoutedEventArgs e)
