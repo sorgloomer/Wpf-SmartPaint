@@ -203,7 +203,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel >
-                                    <TextBox Text="{Binding Name, Mode=TwoWay}"/>
+                                    <TextBox Text="{Binding Name, Mode=TwoWay}" Width="100"/>
                                     <Image Source="{Binding Image}" Width="100"/>
                                 </StackPanel>
                             </DataTemplate>
