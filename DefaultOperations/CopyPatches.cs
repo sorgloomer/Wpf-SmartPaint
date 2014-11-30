@@ -27,8 +27,7 @@ namespace DefaultOperations
         public void Apply(Project project)
         {
             var selected = project.Patches.Where(p => p.Selected).ToList();
-            var copy = selected.Select(p => 
-                new Patch("Copy of " + p.Name, p.Image, p.PositionX + 10, p.PositionY + 5)).ToList();
+            var copy = selected.Select(CopyPatch.Copy).ToList();
             foreach (var p in selected) p.Selected = false;
             foreach (var p in copy) p.Selected = true;
             var newList = new List<Patch>(project.Patches);
