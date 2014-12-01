@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultOperations", "Defaul
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ErosionOperation", "ErosionOperation\ErosionOperation.csproj", "{7C95BE2D-D98D-464C-8C9D-BE5A6A100F5D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{F73CD66C-87B4-4B60-85D1-C5D3B5EF9CC0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassDiagram", "ClassDiagram\ClassDiagram.csproj", "{48047719-EC27-4A5C-A321-6A78DB1D69BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,10 @@ Global
 		{7C95BE2D-D98D-464C-8C9D-BE5A6A100F5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C95BE2D-D98D-464C-8C9D-BE5A6A100F5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C95BE2D-D98D-464C-8C9D-BE5A6A100F5D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48047719-EC27-4A5C-A321-6A78DB1D69BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48047719-EC27-4A5C-A321-6A78DB1D69BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48047719-EC27-4A5C-A321-6A78DB1D69BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48047719-EC27-4A5C-A321-6A78DB1D69BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -34,5 +42,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{54698597-8677-4A40-8BB3-988FD34C39E5} = {6306072A-0FB8-41C4-AADE-15FB6582909C}
 		{7C95BE2D-D98D-464C-8C9D-BE5A6A100F5D} = {6306072A-0FB8-41C4-AADE-15FB6582909C}
+		{48047719-EC27-4A5C-A321-6A78DB1D69BC} = {F73CD66C-87B4-4B60-85D1-C5D3B5EF9CC0}
 	EndGlobalSection
 EndGlobal
